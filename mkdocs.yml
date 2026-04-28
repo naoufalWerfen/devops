@@ -1,0 +1,129 @@
+site_name: DevOps Documentation
+site_description: Documentación centralizada de proyectos, entornos y servidores
+site_author: Werfen DevOps
+
+# Documentos viven en /docs (que es un symlink/alias de projects + index)
+docs_dir: docs
+
+theme:
+  name: material
+  language: es
+  palette:
+    # Modo claro
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    # Modo oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.indexes
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/git-alt
+    admonition:
+      note: octicons/tag-16
+      warning: octicons/alert-16
+      danger: octicons/zap-16
+
+plugins:
+  - search:
+      lang:
+        - es
+        - en
+  - tags
+  - awesome-pages
+
+markdown_extensions:
+  # Bloques de admonición (notas, warnings)
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  # Code blocks mejorados
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  # Tablas, listas, etc
+  - tables
+  - footnotes
+  - attr_list
+  - md_in_html
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/
+  generator: false
+
+copyright: >
+  Copyright &copy; 2026 Werfen DevOps —
+  <a href="constitution/">Constitución del proyecto</a>
+
+# Navegación principal (awesome-pages plugin completa el resto desde .pages files)
+nav:
+  - Inicio: index.md
+  - Proyectos:
+      - projects/README.md
+      - Distributors Portal:
+          - projects/distributors-portal/README.md
+          - 'TEST':
+              - projects/distributors-portal/test/README.md
+              - 'Server Info': projects/distributors-portal/test/server-info/server-overview.md
+              - 'Web Stack':
+                  - 'Full Report': projects/distributors-portal/test/web-stack/full-report.md
+                  - 'Logs': projects/distributors-portal/test/web-stack/logs.md
+                  - 'Análisis en Vivo': projects/distributors-portal/test/web-stack/log-analysis.md
+              - 'Database': projects/distributors-portal/test/database/README.md
+              - 'DevOps': projects/distributors-portal/test/devops/README.md
+              - 'Cybersecurity': projects/distributors-portal/test/cybersecurity/README.md
+      - Accriva Tickets:
+          - projects/accriva-tickets/README.md
+          - 'TEST':
+              - projects/accriva-tickets/test/README.md
+              - 'Server Info': projects/accriva-tickets/test/server-info/server-overview.md
+              - 'Web Stack':
+                  - 'Full Report': projects/accriva-tickets/test/web-stack/full-report.md
+                  - 'Logs': projects/accriva-tickets/test/web-stack/logs.md
+                  - 'Análisis en Vivo': projects/accriva-tickets/test/web-stack/log-analysis.md
+              - 'DevOps': projects/accriva-tickets/test/devops/README.md
+              - 'Cybersecurity': projects/accriva-tickets/test/cybersecurity/README.md
+  - Constitución: constitution.md

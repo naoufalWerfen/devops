@@ -1,0 +1,60 @@
+# .gitignore - DevOps Documentation Repository
+# =============================================
+
+# Credenciales y secretos (NUNCA subir)
+*.pem
+*.key
+*.p12
+*.pfx
+*.env
+*.env.*
+!*.env.example
+credentials/
+secrets/
+vault/
+**/passwords*
+**/tokens*
+**/*secret*
+**/*credential*
+
+# SSH keys
+id_rsa
+id_ed25519
+*.pub
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+\#*\#
+
+# IDE
+.idea/
+.vscode/settings.json
+.vscode/launch.json
+
+# Logs locales
+*.log
+
+# Notas personales
+scratch/
+tmp/
+
+# MkDocs build output
+site/
+.cache/
+__pycache__/
+.venv/
+venv/
+
+# Docusaurus build output
+docusaurus-site/build/
+docusaurus-site/node_modules/
+docusaurus-site/.docusaurus/
+
+# Recon outputs (contienen datos sensibles del servidor)
+recon-*-output.txt
+recon-*-extra.txt
+recon-*-logs.txt
