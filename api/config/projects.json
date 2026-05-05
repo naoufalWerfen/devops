@@ -1,0 +1,89 @@
+{
+  "servers": [
+    {
+      "name": "WEBAPPSPROD",
+      "hostname": "WEBAPPSPROD",
+      "ip": "10.120.204.93",
+      "os": "SUSE Linux Enterprise Server",
+      "os_version": "15 SP6",
+      "cpu": "Intel Xeon Gold",
+      "cpu_count": 1,
+      "ram_gb": 15,
+      "disk_gb": 146,
+      "disk_usage_pct": 81,
+      "uptime_days": null
+    },
+    {
+      "name": "ACCRIVATICKETSTEST",
+      "hostname": "ACCRIVATICKETSTEST",
+      "ip": "10.120.204.45",
+      "os": "SUSE Linux Enterprise Server",
+      "os_version": "15 SP1",
+      "cpu": "Intel Xeon Gold",
+      "cpu_count": 1,
+      "ram_gb": 7.5,
+      "disk_gb": null,
+      "disk_usage_pct": null,
+      "uptime_days": 739
+    },
+    {
+      "name": "DISTRIBUTORSPORTALTEST",
+      "hostname": "DISTRIBUTORSPORTALTEST",
+      "ip": "10.120.204.25",
+      "os": "SUSE Linux Enterprise Server",
+      "os_version": "15 SP6",
+      "cpu": "Intel Xeon Gold",
+      "cpu_count": 1,
+      "ram_gb": 31,
+      "disk_gb": 38,
+      "disk_usage_pct": 53,
+      "uptime_days": 535
+    }
+  ],
+  "projects": [
+    {
+      "name": "myorders",
+      "label": "MyOrders",
+      "description": "Symfony 6.1 monorepo — 8 sub-aplicaciones (orders, backoffice, tracking, RGA, vendors, caseportal, monthlyreport, middleware ADP)",
+      "server": "WEBAPPSPROD",
+      "environment": "demo",
+      "url": "https://myorders.werfen.com",
+      "stack": [
+        { "product": "php",       "label": "PHP",          "version": "8.1",    "category": "language" },
+        { "product": "symfony",   "label": "Symfony",      "version": "6.1",    "category": "framework" },
+        { "product": "nginx",     "label": "Nginx",        "version": "1.21.5", "category": "server" },
+        { "product": "mariadb",   "label": "MariaDB",      "version": "10.11.9","category": "database" },
+        { "product": "sles",      "label": "SLES",         "version": "15.6",   "category": "os" }
+      ]
+    },
+    {
+      "name": "accriva-tickets",
+      "label": "Accriva Tickets",
+      "description": "Portal de tickets de reparación para distribuidores Accriva — React SPA + Node.js/Express API → SAP",
+      "server": "ACCRIVATICKETSTEST",
+      "environment": "test",
+      "url": null,
+      "stack": [
+        { "product": "nodejs",    "label": "Node.js",      "version": "8.17.0", "category": "runtime" },
+        { "product": "react",     "label": "React",        "version": "16",     "category": "framework" },
+        { "product": "nginx",     "label": "Nginx",        "version": "1.14",   "category": "server" },
+        { "product": "sles",      "label": "SLES",         "version": "15.1",   "category": "os" }
+      ]
+    },
+    {
+      "name": "distributors-portal",
+      "label": "Distributors Portal",
+      "description": "Portal B2B e-business (WLEB) — Drupal 9 CMS con integración SAP ERP",
+      "server": "DISTRIBUTORSPORTALTEST",
+      "environment": "test",
+      "url": null,
+      "stack": [
+        { "product": "drupal",    "label": "Drupal",       "version": "9.4.8",  "category": "framework" },
+        { "product": "php",       "label": "PHP",          "version": "7.4",    "category": "language" },
+        { "product": "apache",    "label": "Apache HTTP Server", "version": "2.4.58", "category": "server" },
+        { "product": "mariadb",   "label": "MariaDB",      "version": "10.11.9","category": "database" },
+        { "product": "sles",      "label": "SLES",         "version": "15.6",   "category": "os" }
+      ]
+    }
+  ]
+}

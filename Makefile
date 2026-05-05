@@ -93,6 +93,39 @@ ports: ## Ver puertos en uso
 disk: ## Espacio en disco
 	df -h / | tail -1
 
+# --- Docker (API + PostgreSQL) ---
+
+.PHONY: up
+up: ## Levantar API + PostgreSQL con Docker Compose
+	docker compose up -d --build
+
+.PHONY: down
+down: ## Parar contenedores Docker
+	docker compose down
+
+.PHONY: logs
+logs: ## Ver logs de los contenedores
+	docker compose logs -f --tail=50
+
+.PHONY: api-logs
+api-logs: ## Ver logs solo de la API
+	docker compose logs -f --tail=50 api
+
+.PHONY: db-shell
+db-shell: ## Abrir shell psql en la base de datos
+	docker compose exec db psql -U devops devops_dashboard
+
+.PHONY: sync
+sync: ## Forzar sincronización con endoflife.date
+	@curl -s -X POST http://localhost:3001/api/sync | python3 -m json.tool 2>/dev/null || curl -s -X POST http://localhost:3001/api/sync
+
+.PHONY: api-status
+api-status: ## Verificar estado de la API
+	@curl -s http://localhost:3001/api/health | python3 -m json.tool 2>/dev/null || echo "API no disponible"
+
+.PHONY: full
+full: up dev ## Levantar todo (Docker + Docusaurus)
+
 .PHONY: help
 help: ## Mostrar esta ayuda
 	@echo ""

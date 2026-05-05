@@ -1,0 +1,17 @@
+{
+  "name": "devops-dashboard-api",
+  "version": "1.0.0",
+  "description": "API para el dashboard DevOps — consulta endoflife.date y almacena info de servidores y stack",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "sync": "node src/cli/sync.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "pg": "^8.13.0",
+    "ssh2": "^1.16.0"
+  }
+}

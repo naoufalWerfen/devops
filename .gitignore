@@ -54,7 +54,11 @@ docusaurus-site/build/
 docusaurus-site/node_modules/
 docusaurus-site/.docusaurus/
 
+# API build output
+api/node_modules/
+
 # Recon outputs (contienen datos sensibles del servidor)
 recon-*-output.txt
 recon-*-extra.txt
 recon-*-logs.txt
+/audits/

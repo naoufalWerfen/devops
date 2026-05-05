@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: devops-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: devops_dashboard
+      POSTGRES_USER: devops
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./api/db/init.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./api/db/02-migration-import.sql:/docker-entrypoint-initdb.d/02-migration-import.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U devops -d devops_dashboard"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: devops-api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: devops_dashboard
+      DB_USER: devops
+      DB_PASSWORD_FILE: /run/secrets/db_password
+      PORT: 3001
+      ENDOFLIFE_API_URL: https://endoflife.date/api/v1
+    secrets:
+      - db_password
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./projects:/data/projects:ro
+      - ./scripts/server-audit.sh:/data/server-audit.sh:ro
+    depends_on:
+      db:
+        condition: service_healthy
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+
+volumes:
+  pgdata:

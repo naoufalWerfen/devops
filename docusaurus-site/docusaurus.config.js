@@ -64,6 +64,21 @@ const config = {
         },
         items: [
           {
+            to: '/stack',
+            position: 'left',
+            label: '📊 Stack & Servidores',
+          },
+          {
+            to: '/import',
+            position: 'left',
+            label: '📥 Importar',
+          },
+          {
+            to: '/audit',
+            position: 'left',
+            label: '🔍 Auditoría Remota',
+          },
+          {
             type: 'docSidebar',
             sidebarId: 'distributorsPortalSidebar',
             position: 'left',
@@ -119,6 +134,10 @@ const config = {
           {
             title: 'Recursos',
             items: [
+              {
+                label: 'Stack & Servidores',
+                to: '/stack',
+              },
               {
                 label: 'GitHub — Werfen D&A',
                 href: 'https://github.com/Werfen-D-A',
