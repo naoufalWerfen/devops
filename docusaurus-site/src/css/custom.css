@@ -566,6 +566,25 @@
   font-weight: 500;
 }
 
+/* Server card footer link */
+.stack-server-card__footer {
+  padding: 0.5rem 1.2rem 0.8rem;
+  text-align: right;
+}
+
+.server-stack-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.server-stack-link:hover {
+  color: var(--ifm-color-primary-dark);
+  text-decoration: underline;
+}
+
 /* Stack table */
 .stack-table-wrapper {
   overflow-x: auto;
@@ -641,6 +660,105 @@
 .eol-badge--ok {
   background: rgba(34, 197, 94, 0.12);
   color: #16a34a;
+}
+
+.eol-badge--lts {
+  background: rgba(96, 165, 250, 0.12);
+  color: #2563eb;
+}
+
+[data-theme='dark'] .eol-badge--lts {
+  color: #60a5fa;
+}
+
+.eol-badge--unknown {
+  background: rgba(107, 114, 128, 0.1);
+  color: #6b7280;
+}
+
+/* Sort & table improvements */
+.sortable-th {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.sortable-th:hover {
+  background: rgba(6, 3, 141, 0.04);
+}
+
+.sortable-th__label {
+  margin-right: 4px;
+}
+
+.sort-icon {
+  font-size: 0.75rem;
+  color: var(--ifm-color-primary);
+}
+
+.sort-icon--inactive {
+  opacity: 0.3;
+}
+
+/* Version comparison */
+.version--outdated {
+  color: var(--werfen-secondary);
+  font-weight: 600;
+}
+
+.version--current {
+  color: #16a34a;
+}
+
+/* EOL date extras */
+.eol-days {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.eol-days--past {
+  color: var(--werfen-red);
+}
+
+.eol-date--past {
+  color: var(--werfen-red);
+  font-weight: 600;
+}
+
+.eol-date--soon {
+  color: #b38600;
+  font-weight: 600;
+}
+
+/* LTS tag inline */
+.lts-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  background: rgba(96, 165, 250, 0.15);
+  color: #2563eb;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+/* Project section header */
+.project-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.project-section-header h3 {
+  margin: 0;
+}
+
+.project-section-stats {
+  display: flex;
+  gap: 0.5rem;
 }
 
 /* Category badges */

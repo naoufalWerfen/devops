@@ -83,15 +83,26 @@ router.get('/stack', async (_req, res) => {
            COALESCE(p.name, s2.name) AS project_name,
            COALESCE(p.label, s2.name) AS project_label,
            es.is_eol, es.eol_date, es.latest_version, es.latest_date,
-           es.is_lts, es.is_maintained, es.fetched_at
+           es.is_lts, es.is_eoas, es.eoas_date, es.release_date,
+           es.is_maintained, es.fetched_at
     FROM stack_components sc
     LEFT JOIN projects p ON sc.project_id = p.id
     LEFT JOIN servers s2 ON sc.server_id = s2.id
     LEFT JOIN eol_status es ON sc.product = es.product
       AND es.cycle = (
-        SELECT cycle FROM eol_status
-        WHERE product = sc.product
-        ORDER BY fetched_at DESC LIMIT 1
+        SELECT e2.cycle FROM eol_status e2
+        WHERE e2.product = sc.product
+          AND (
+            e2.cycle = sc.current_version
+            OR e2.cycle = split_part(sc.current_version, '.', 1) || '.' || split_part(sc.current_version, '.', 2)
+            OR e2.cycle = split_part(sc.current_version, '.', 1)
+          )
+        ORDER BY
+          CASE WHEN e2.cycle = sc.current_version THEN 0
+               WHEN e2.cycle = split_part(sc.current_version, '.', 1) || '.' || split_part(sc.current_version, '.', 2) THEN 1
+               ELSE 2 END,
+          e2.fetched_at DESC
+        LIMIT 1
       )
     WHERE (p.id IS NOT NULL OR s2.id IS NOT NULL)
     ORDER BY sc.product, COALESCE(p.name, s2.name)

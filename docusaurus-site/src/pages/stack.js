@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
 
 const API_BASE = 'http://localhost:3001/api';
 
 /* ── Helpers ─────────────────────────────────────────────────────────────── */
-
-function StatusBadge({ isEol, isEoas }) {
-  if (isEol) return <span className="eol-badge eol-badge--eol">EOL</span>;
-  if (isEoas) return <span className="eol-badge eol-badge--eoas">Soporte limitado</span>;
-  return <span className="eol-badge eol-badge--ok">Soportado</span>;
-}
 
 function formatDate(d) {
   if (!d) return '—';
@@ -19,13 +12,88 @@ function formatDate(d) {
 
 function daysUntil(d) {
   if (!d) return null;
-  const diff = Math.ceil((new Date(d) - new Date()) / 86400000);
-  return diff;
+  return Math.ceil((new Date(d) - new Date()) / 86400000);
+}
+
+function StatusBadge({ item }) {
+  if (item.is_eol) return <span className="eol-badge eol-badge--eol">EOL</span>;
+  if (item.is_eoas) return <span className="eol-badge eol-badge--eoas">Soporte limitado</span>;
+  if (item.is_lts) return <span className="eol-badge eol-badge--lts">LTS</span>;
+  if (item.is_maintained === true) return <span className="eol-badge eol-badge--ok">Soportado</span>;
+  if (item.latest_version) return <span className="eol-badge eol-badge--ok">Soportado</span>;
+  return <span className="eol-badge eol-badge--unknown">Sin datos</span>;
+}
+
+function EolDateCell({ item }) {
+  const days = daysUntil(item.eol_date);
+  if (!item.eol_date) return <td>—</td>;
+  const isPast = item.is_eol;
+  const isSoon = days !== null && days > 0 && days < 180;
+  return (
+    <td>
+      <span className={isPast ? 'eol-date--past' : isSoon ? 'eol-date--soon' : ''}>
+        {formatDate(item.eol_date)}
+        {days !== null && !isPast && <small className="eol-days"> ({days}d)</small>}
+        {isPast && <small className="eol-days eol-days--past"> (hace {Math.abs(days)}d)</small>}
+      </span>
+    </td>
+  );
+}
+
+function VersionCompare({ current, latest }) {
+  if (!latest) return <td>—</td>;
+  const isOutdated = current !== latest;
+  return (
+    <td>
+      <code className={isOutdated ? 'version--outdated' : 'version--current'}>{latest}</code>
+    </td>
+  );
+}
+
+/* ── Hook de ordenación ──────────────────────────────────────────────────── */
+
+function useSortableData(items) {
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+
+  const sortedItems = useMemo(() => {
+    if (!sortConfig.key) return items;
+    return [...items].sort((a, b) => {
+      let aVal = a[sortConfig.key];
+      let bVal = b[sortConfig.key];
+      if (aVal == null && bVal == null) return 0;
+      if (aVal == null) return 1;
+      if (bVal == null) return -1;
+      if (typeof aVal === 'boolean') { aVal = aVal ? 1 : 0; bVal = bVal ? 1 : 0; }
+      if (sortConfig.key.includes('date') || sortConfig.key === 'fetched_at') {
+        aVal = new Date(aVal).getTime(); bVal = new Date(bVal).getTime();
+      }
+      if (typeof aVal === 'string') {
+        return sortConfig.direction === 'asc'
+          ? aVal.localeCompare(bVal, 'es', { sensitivity: 'base' })
+          : bVal.localeCompare(aVal, 'es', { sensitivity: 'base' });
+      }
+      return sortConfig.direction === 'asc' ? aVal - bVal : bVal - aVal;
+    });
+  }, [items, sortConfig]);
+
+  const requestSort = useCallback((key) => {
+    setSortConfig((prev) => ({
+      key,
+      direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc',
+    }));
+  }, []);
+
+  const getSortIndicator = useCallback((key) => {
+    if (sortConfig.key !== key) return <span className="sort-icon sort-icon--inactive">⇅</span>;
+    return <span className="sort-icon">{sortConfig.direction === 'asc' ? '↑' : '↓'}</span>;
+  }, [sortConfig]);
+
+  return { sortedItems, requestSort, getSortIndicator };
 }
 
 /* ── Componentes ─────────────────────────────────────────────────────────── */
 
-function ServerCards({ servers }) {
+function ServerCards({ servers, onNavigateToProject }) {
   if (!servers.length) return null;
   return (
     <div className="stack-servers">
@@ -40,7 +108,11 @@ function ServerCards({ servers }) {
             <div className="stack-row"><span className="stack-label">CPU</span><span>{s.cpu_count} vCPU · {s.cpu}</span></div>
             <div className="stack-row"><span className="stack-label">RAM</span><span>{s.ram_gb} GB</span></div>
             {s.disk_gb && <div className="stack-row"><span className="stack-label">Disco</span><span>{s.disk_gb} GB ({s.disk_usage_pct}%)</span></div>}
-            {s.uptime_days && <div className="stack-row"><span className="stack-label">Uptime</span><span>{s.uptime_days} días</span></div>}
+            {s.uptime_days != null && <div className="stack-row"><span className="stack-label">Uptime</span><span>{s.uptime_days} días</span></div>}
+            {s.environment && <div className="stack-row"><span className="stack-label">Entorno</span><span className={`cat-badge cat-badge--${s.environment}`}>{s.environment}</span></div>}
+          </div>
+          <div className="stack-server-card__footer">
+            <a href={`#stack-${s.name}`} className="server-stack-link" onClick={(e) => { e.preventDefault(); onNavigateToProject(s.name); }}>Ver stack →</a>
           </div>
         </div>
       ))}
@@ -48,42 +120,51 @@ function ServerCards({ servers }) {
   );
 }
 
+function SortableHeader({ label, sortKey, requestSort, getSortIndicator }) {
+  return (
+    <th className="sortable-th" onClick={() => requestSort(sortKey)}>
+      <span className="sortable-th__label">{label}</span>
+      {getSortIndicator(sortKey)}
+    </th>
+  );
+}
+
 function StackTable({ stack, showProject }) {
+  const { sortedItems, requestSort, getSortIndicator } = useSortableData(stack);
   if (!stack.length) return <p>No hay datos de stack. Ejecuta una sincronización.</p>;
+
   return (
     <div className="stack-table-wrapper">
       <table className="stack-table">
         <thead>
           <tr>
-            {showProject && <th>Proyecto</th>}
-            <th>Tecnología</th>
-            <th>Categoría</th>
-            <th>Versión actual</th>
-            <th>Última disponible</th>
-            <th>EOL</th>
-            <th>Estado</th>
+            {showProject && <SortableHeader label="Proyecto" sortKey="project_label" requestSort={requestSort} getSortIndicator={getSortIndicator} />}
+            <SortableHeader label="Tecnología" sortKey="product_label" requestSort={requestSort} getSortIndicator={getSortIndicator} />
+            <SortableHeader label="Categoría" sortKey="category" requestSort={requestSort} getSortIndicator={getSortIndicator} />
+            <SortableHeader label="Versión actual" sortKey="current_version" requestSort={requestSort} getSortIndicator={getSortIndicator} />
+            <SortableHeader label="Última disponible" sortKey="latest_version" requestSort={requestSort} getSortIndicator={getSortIndicator} />
+            <SortableHeader label="Fecha release" sortKey="release_date" requestSort={requestSort} getSortIndicator={getSortIndicator} />
+            <SortableHeader label="Fin EOL" sortKey="eol_date" requestSort={requestSort} getSortIndicator={getSortIndicator} />
+            <SortableHeader label="Estado" sortKey="is_eol" requestSort={requestSort} getSortIndicator={getSortIndicator} />
           </tr>
         </thead>
         <tbody>
-          {stack.map((item, i) => {
+          {sortedItems.map((item, i) => {
             const days = daysUntil(item.eol_date);
             const eolWarning = days !== null && days > 0 && days < 180;
             return (
               <tr key={i} className={item.is_eol ? 'row--eol' : eolWarning ? 'row--warning' : ''}>
                 {showProject && <td><strong>{item.project_label || item.project_name}</strong></td>}
-                <td>{item.product_label}</td>
+                <td>
+                  {item.product_label}
+                  {item.is_lts && <span className="lts-tag">LTS</span>}
+                </td>
                 <td><span className={`cat-badge cat-badge--${item.category}`}>{item.category}</span></td>
                 <td><code>{item.current_version}</code></td>
-                <td>{item.latest_version ? <code>{item.latest_version}</code> : '—'}</td>
-                <td>
-                  {item.eol_date ? (
-                    <span className={item.is_eol ? 'eol-date--past' : eolWarning ? 'eol-date--soon' : ''}>
-                      {formatDate(item.eol_date)}
-                      {days !== null && !item.is_eol && <small> ({days}d)</small>}
-                    </span>
-                  ) : '—'}
-                </td>
-                <td><StatusBadge isEol={item.is_eol} isEoas={item.is_eoas} /></td>
+                <VersionCompare current={item.current_version} latest={item.latest_version} />
+                <td>{formatDate(item.release_date)}</td>
+                <EolDateCell item={item} />
+                <td><StatusBadge item={item} /></td>
               </tr>
             );
           })}
@@ -129,7 +210,7 @@ export default function StackStatus() {
   const [syncStatus, setSyncStatus] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [view, setView] = useState('all'); // all | by-project
+  const [view, setView] = useState('by-project');
 
   const fetchData = async () => {
     try {
@@ -165,6 +246,7 @@ export default function StackStatus() {
   const eolCount = stack.filter((s) => s.is_eol).length;
   const eoasCount = stack.filter((s) => s.is_eoas && !s.is_eol).length;
   const okCount = stack.filter((s) => !s.is_eol && !s.is_eoas).length;
+  const ltsCount = stack.filter((s) => s.is_lts).length;
 
   // Group by project
   const byProject = stack.reduce((acc, item) => {
@@ -194,6 +276,10 @@ export default function StackStatus() {
               <div className="stat-label" style={{color: 'rgba(255,255,255,0.7)'}}>Soportados</div>
             </div>
             <div className="stat-item">
+              <div className="stat-number" style={{color: '#60a5fa'}}>{ltsCount}</div>
+              <div className="stat-label" style={{color: 'rgba(255,255,255,0.7)'}}>LTS</div>
+            </div>
+            <div className="stat-item">
               <div className="stat-number" style={{color: '#fff'}}>{servers.length}</div>
               <div className="stat-label" style={{color: 'rgba(255,255,255,0.7)'}}>Servidores</div>
             </div>
@@ -218,7 +304,7 @@ export default function StackStatus() {
             {/* Servidores */}
             <section style={{margin: '2rem 0'}}>
               <div className="section-label">🖥️ Servidores</div>
-              <ServerCards servers={servers} />
+              <ServerCards servers={servers} onNavigateToProject={(name) => { setView('by-project'); setTimeout(() => { const el = document.getElementById('stack-' + name); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100); }} />
             </section>
 
             {/* Vista toggle */}
@@ -227,25 +313,36 @@ export default function StackStatus() {
                 <div className="section-label" style={{margin: 0}}>📦 Stack Tecnológico</div>
                 <div className="button-group">
                   <button
-                    className={`button button--sm ${view === 'all' ? 'button--primary' : 'button--outline button--primary'}`}
-                    onClick={() => setView('all')}
-                  >Vista global</button>
-                  <button
                     className={`button button--sm ${view === 'by-project' ? 'button--primary' : 'button--outline button--primary'}`}
                     onClick={() => setView('by-project')}
                   >Por proyecto</button>
+                  <button
+                    className={`button button--sm ${view === 'all' ? 'button--primary' : 'button--outline button--primary'}`}
+                    onClick={() => setView('all')}
+                  >Vista global</button>
                 </div>
               </div>
 
               {view === 'all' ? (
                 <StackTable stack={stack} showProject />
               ) : (
-                Object.entries(byProject).map(([name, { label, items }]) => (
-                  <div key={name} style={{marginBottom: '2rem'}}>
-                    <h3>{label}</h3>
-                    <StackTable stack={items} showProject={false} />
-                  </div>
-                ))
+                Object.entries(byProject).map(([name, { label, items }]) => {
+                  const projEol = items.filter((i) => i.is_eol).length;
+                  const projEoas = items.filter((i) => i.is_eoas && !i.is_eol).length;
+                  return (
+                    <div key={name} id={`stack-${name}`} style={{marginBottom: '2rem', scrollMarginTop: '80px'}}>
+                      <div className="project-section-header">
+                        <h3>{label}</h3>
+                        <div className="project-section-stats">
+                          {projEol > 0 && <span className="eol-badge eol-badge--eol">{projEol} EOL</span>}
+                          {projEoas > 0 && <span className="eol-badge eol-badge--eoas">{projEoas} limitado</span>}
+                          <span className="eol-badge eol-badge--ok">{items.length - projEol - projEoas} ok</span>
+                        </div>
+                      </div>
+                      <StackTable stack={items} showProject={false} />
+                    </div>
+                  );
+                })
               )}
             </section>
           </>
