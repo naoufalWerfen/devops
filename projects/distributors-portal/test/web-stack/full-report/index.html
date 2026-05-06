@@ -1,0 +1,3517 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación centralizada de proyectos, entornos y servidores">
+      
+      
+        <meta name="author" content="Werfen DevOps">
+      
+      
+      
+        <link rel="prev" href="../../server-info/server-overview/">
+      
+      
+        <link rel="next" href="../logs/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Full Report - DevOps Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#informe-detallado-del-servidor-distributors-portal-test" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../../.." title="DevOps Documentation" class="md-header__button md-logo" aria-label="DevOps Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DevOps Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Full Report
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Proyectos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../constitution/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Constitución
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="DevOps Documentation" class="md-nav__button md-logo" aria-label="DevOps Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DevOps Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyectos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Proyectos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributors Portal
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Distributors Portal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../server-info/server-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_3" id="__nav_2_2_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Stack
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Web Stack
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Full Report
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Full Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-informacion-general-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Información General del Servidor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Información General del Servidor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-hardware-virtual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Hardware (Virtual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-servicios-web-activos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Servicios Web Activos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Servicios Web Activos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-resumen-de-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Resumen de Servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-puertos-en-escucha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Puertos en Escucha
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configuracion-de-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configuración de Apache
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Configuración de Apache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-configuracion-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Configuración General
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-modulos-apache-cargados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Módulos Apache Cargados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-configuracion-de-mod_php7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Configuración de mod_php7
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-virtual-hosts-configurados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Virtual Hosts Configurados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 Virtual Hosts Configurados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vhost-1-distributorstest-php74werfencom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VHost 1: distributorstest-php74.werfen.com
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vhost-2-distributorstestwerfencom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VHost 2: distributorstest.werfen.com
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vhost-3-sshdistributors-portal-testwerfenlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VHost 3: ssh.distributors-portal-test.werfen.local
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-configuracion-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Configuración PHP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Configuración PHP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-version-y-motor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Versión y Motor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-archivos-de-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Archivos de Configuración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-modulos-php-instalados-65-modulos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Módulos PHP Instalados (65 módulos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-base-de-datos-mariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Base de Datos - MariaDB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-proyecto-distributors_portal_test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Proyecto: distributors_portal_test
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Proyecto: distributors_portal_test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-informacion-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Información General
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-estructura-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Estructura del Proyecto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-dependencias-composer-composerjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Dependencias Composer (composer.json)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3 Dependencias Composer (composer.json)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencias-principales-require" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencias principales (require):
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-modulos-contribuidos-contrib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Módulos Contribuidos (contrib)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-modulos-personalizados-custom-werfen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Módulos Personalizados (custom) - WERFEN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-tema-personalizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 Tema Personalizado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-configuracion-del-entorno-settingslocalphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7 Configuración del Entorno (settings.local.php)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.7 Configuración del Entorno (settings.local.php)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base de Datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integracion-sap-web-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integración SAP (Web Services)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-proxy-inverso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de Proxy Inverso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trusted-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trusted Hosts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-organizaciones-de-ventas-werfen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de Organizaciones de Ventas (Werfen)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caché
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-segundo-proyecto-distributors_portal-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Segundo Proyecto: distributors_portal (Producción)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-diagrama-de-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Diagrama de Arquitectura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-resumen-tecnologico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Resumen Tecnológico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-observaciones-y-notas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Observaciones y Notas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../log-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Análisis en Vivo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cybersecurity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cybersecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../accriva-tickets/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accriva Tickets
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Accriva Tickets
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../accriva-tickets/test/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../accriva-tickets/test/server-info/server-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2_3" id="__nav_2_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Stack
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Web Stack
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../accriva-tickets/test/web-stack/full-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Full Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../accriva-tickets/test/web-stack/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../accriva-tickets/test/web-stack/log-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Análisis en Vivo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../accriva-tickets/test/devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../accriva-tickets/test/cybersecurity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cybersecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../constitution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constitución
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-informacion-general-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Información General del Servidor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Información General del Servidor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-hardware-virtual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Hardware (Virtual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-servicios-web-activos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Servicios Web Activos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Servicios Web Activos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-resumen-de-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Resumen de Servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-puertos-en-escucha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Puertos en Escucha
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configuracion-de-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configuración de Apache
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Configuración de Apache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-configuracion-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Configuración General
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-modulos-apache-cargados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Módulos Apache Cargados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-configuracion-de-mod_php7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Configuración de mod_php7
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-virtual-hosts-configurados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Virtual Hosts Configurados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 Virtual Hosts Configurados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vhost-1-distributorstest-php74werfencom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VHost 1: distributorstest-php74.werfen.com
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vhost-2-distributorstestwerfencom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VHost 2: distributorstest.werfen.com
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vhost-3-sshdistributors-portal-testwerfenlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VHost 3: ssh.distributors-portal-test.werfen.local
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-configuracion-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Configuración PHP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Configuración PHP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-version-y-motor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Versión y Motor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-archivos-de-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Archivos de Configuración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-modulos-php-instalados-65-modulos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Módulos PHP Instalados (65 módulos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-base-de-datos-mariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Base de Datos - MariaDB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-proyecto-distributors_portal_test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Proyecto: distributors_portal_test
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Proyecto: distributors_portal_test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-informacion-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Información General
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-estructura-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Estructura del Proyecto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-dependencias-composer-composerjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Dependencias Composer (composer.json)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3 Dependencias Composer (composer.json)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencias-principales-require" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencias principales (require):
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-modulos-contribuidos-contrib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Módulos Contribuidos (contrib)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-modulos-personalizados-custom-werfen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Módulos Personalizados (custom) - WERFEN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-tema-personalizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 Tema Personalizado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-configuracion-del-entorno-settingslocalphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7 Configuración del Entorno (settings.local.php)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.7 Configuración del Entorno (settings.local.php)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base de Datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integracion-sap-web-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integración SAP (Web Services)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-proxy-inverso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de Proxy Inverso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trusted-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trusted Hosts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-organizaciones-de-ventas-werfen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de Organizaciones de Ventas (Werfen)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caché
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-segundo-proyecto-distributors_portal-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Segundo Proyecto: distributors_portal (Producción)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-diagrama-de-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Diagrama de Arquitectura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-resumen-tecnologico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Resumen Tecnológico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-observaciones-y-notas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Observaciones y Notas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Proyectos
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Distributors Portal
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    TEST
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Web Stack
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="informe-detallado-del-servidor-distributors-portal-test">Informe Detallado del Servidor - Distributors Portal Test<a class="headerlink" href="#informe-detallado-del-servidor-distributors-portal-test" title="Permanent link">&para;</a></h1>
+<p><strong>Servidor:</strong> 10.120.204.25<br />
+<strong>Hostname:</strong> DISTRIBUTORSPORTALTEST<br />
+<strong>Fecha del informe:</strong> 27 de abril de 2026  </p>
+<hr />
+<h2 id="1-informacion-general-del-servidor">1. Información General del Servidor<a class="headerlink" href="#1-informacion-general-del-servidor" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sistema Operativo</strong></td>
+<td>SUSE Linux Enterprise Server 15 SP6 (SLES 15-SP6)</td>
+</tr>
+<tr>
+<td><strong>Kernel</strong></td>
+<td>Linux 6.4.0-150600.23.25-default x86_64</td>
+</tr>
+<tr>
+<td><strong>Hostname</strong></td>
+<td>DISTRIBUTORSPORTALTEST</td>
+</tr>
+<tr>
+<td><strong>IP</strong></td>
+<td>10.120.204.25</td>
+</tr>
+<tr>
+<td><strong>Uptime</strong></td>
+<td>535 días (al momento del análisis)</td>
+</tr>
+<tr>
+<td><strong>Virtualización</strong></td>
+<td>VMware (máquina virtual)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="11-hardware-virtual">1.1 Hardware (Virtual)<a class="headerlink" href="#11-hardware-virtual" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CPU</strong></td>
+<td>Intel Xeon Gold 5220R @ 2.20GHz (1 vCPU)</td>
+</tr>
+<tr>
+<td><strong>RAM Total</strong></td>
+<td>31 GiB</td>
+</tr>
+<tr>
+<td><strong>RAM Usada</strong></td>
+<td>1.8 GiB</td>
+</tr>
+<tr>
+<td><strong>RAM Disponible</strong></td>
+<td>29 GiB</td>
+</tr>
+<tr>
+<td><strong>Swap</strong></td>
+<td>1.2 GiB (0B usado)</td>
+</tr>
+<tr>
+<td><strong>Disco principal</strong></td>
+<td>/dev/sda2 - 38 GB total, 19 GB usado (53%), 17 GB libre</td>
+</tr>
+<tr>
+<td><strong>Partición EFI</strong></td>
+<td>/dev/sda1 - 500 MB</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-servicios-web-activos">2. Servicios Web Activos<a class="headerlink" href="#2-servicios-web-activos" title="Permanent link">&para;</a></h2>
+<h3 id="21-resumen-de-servicios">2.1 Resumen de Servicios<a class="headerlink" href="#21-resumen-de-servicios" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Servicio</th>
+<th>Estado</th>
+<th>Versión</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Apache (httpd)</strong></td>
+<td><strong>ACTIVO</strong></td>
+<td>Apache/2.4.58 (Linux/SUSE)</td>
+</tr>
+<tr>
+<td><strong>Nginx</strong></td>
+<td><strong>INACTIVO</strong> (no instalado)</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>PHP</strong></td>
+<td><strong>ACTIVO</strong> (mod_php)</td>
+<td>PHP 7.4.30 (NTS)</td>
+</tr>
+<tr>
+<td><strong>MariaDB</strong></td>
+<td><strong>ACTIVO</strong></td>
+<td>10.11.9-MariaDB</td>
+</tr>
+<tr>
+<td><strong>Postfix (correo)</strong></td>
+<td>ACTIVO</td>
+<td>(puerto 25, solo localhost)</td>
+</tr>
+<tr>
+<td><strong>SNMP</strong></td>
+<td>ACTIVO</td>
+<td>(puerto 199, solo localhost)</td>
+</tr>
+<tr>
+<td><strong>SSH</strong></td>
+<td>ACTIVO</td>
+<td>Puerto 22</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-puertos-en-escucha">2.2 Puertos en Escucha<a class="headerlink" href="#22-puertos-en-escucha" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Puerto</th>
+<th>Servicio</th>
+<th>Bind Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22</td>
+<td>SSH (sshd)</td>
+<td>0.0.0.0 y [::]</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Postfix (master)</td>
+<td>127.0.0.1 y [::1]</td>
+</tr>
+<tr>
+<td>80</td>
+<td>Apache (httpd) - <strong>10 workers</strong></td>
+<td>* (todas las interfaces)</td>
+</tr>
+<tr>
+<td>199</td>
+<td>SNMP (snmpd)</td>
+<td>127.0.0.1</td>
+</tr>
+<tr>
+<td>3306</td>
+<td>MariaDB (mysqld)</td>
+<td>127.0.0.1</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>agentid-service</td>
+<td>10.120.204.25 y 127.0.0.1</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Nota:</strong> No hay HTTPS (443) configurado directamente en Apache. El SSL se termina en un <strong>reverse proxy externo</strong> (IP: 212.163.185.1) que conecta al servidor por HTTP en el puerto 80.</p>
+</blockquote>
+<hr />
+<h2 id="3-configuracion-de-apache">3. Configuración de Apache<a class="headerlink" href="#3-configuracion-de-apache" title="Permanent link">&para;</a></h2>
+<h3 id="31-configuracion-general">3.1 Configuración General<a class="headerlink" href="#31-configuracion-general" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Archivo principal:</strong> <code>/etc/apache2/httpd.conf</code></li>
+<li><strong>DocumentRoot por defecto:</strong> <code>/srv/www/htdocs</code></li>
+<li><strong>ErrorLog global:</strong> <code>/var/log/apache2/error_log</code></li>
+<li><strong>Listen:</strong> Puerto 80</li>
+<li><strong>ServerTokens:</strong> ProductOnly</li>
+<li><strong>ServerSignature:</strong> off</li>
+<li><strong>TraceEnable:</strong> off</li>
+<li><strong>LogLevel:</strong> warn</li>
+<li><strong>MPM:</strong> Por defecto del sistema (prefork, requerido por mod_php)</li>
+</ul>
+<h3 id="32-modulos-apache-cargados">3.2 Módulos Apache Cargados<a class="headerlink" href="#32-modulos-apache-cargados" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>actions, alias, auth_basic, authn_core, authn_file, authz_host, 
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>authz_groupfile, authz_core, authz_user, autoindex, cgi, dir, env, 
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>expires, include, log_config, mime, negotiation, setenvif, ssl, 
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>socache_shmcb, userdir, reqtimeout, rewrite, php7.4, php7
+</span></code></pre></div>
+<h3 id="33-configuracion-de-mod_php7">3.3 Configuración de mod_php7<a class="headerlink" href="#33-configuracion-de-mod_php7" title="Permanent link">&para;</a></h3>
+<p>Archivo: <code>/etc/apache2/conf.d/mod_php7.conf</code></p>
+<div class="language-apache highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_php7.c</span><span class="nt">&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&lt;FilesMatch</span><span class="w"> </span><span class="s">&quot;\.ph(p[3457]?|tml)$&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="nb">SetHandler</span><span class="w"> </span>application/x-httpd-php
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&lt;/FilesMatch&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">&lt;FilesMatch</span><span class="w"> </span><span class="s">&quot;\.php[3457]?s$&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="nb">SetHandler</span><span class="w"> </span>application/x-httpd-php-source
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">&lt;/FilesMatch&gt;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nb">DirectoryIndex</span><span class="w"> </span>index.php7
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nb">DirectoryIndex</span><span class="w"> </span>index.php
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nt">&lt;/IfModule&gt;</span>
+</span></code></pre></div>
+<blockquote>
+<p>PHP se ejecuta como <strong>módulo de Apache (mod_php7)</strong>, NO como PHP-FPM.</p>
+</blockquote>
+<h3 id="34-virtual-hosts-configurados">3.4 Virtual Hosts Configurados<a class="headerlink" href="#34-virtual-hosts-configurados" title="Permanent link">&para;</a></h3>
+<p>Se han encontrado <strong>3 Virtual Hosts activos</strong>:</p>
+<hr />
+<h4 id="vhost-1-distributorstest-php74werfencom">VHost 1: <code>distributorstest-php74.werfen.com</code><a class="headerlink" href="#vhost-1-distributorstest-php74werfencom" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Archivo config</strong></td>
+<td><code>/etc/apache2/vhosts.d/distributorstest-php74.werfen.com.conf</code></td>
+</tr>
+<tr>
+<td><strong>ServerName</strong></td>
+<td><code>distributorstest-php74.werfen.com</code></td>
+</tr>
+<tr>
+<td><strong>DocumentRoot</strong></td>
+<td><code>/srv/www/htdocs/distributors_portal/production/deploy/current/web</code></td>
+</tr>
+<tr>
+<td><strong>ErrorLog</strong></td>
+<td><code>/var/log/apache2/customerportal-error_log</code></td>
+</tr>
+<tr>
+<td><strong>Puerto</strong></td>
+<td>80</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Directivas del Directory:</strong>
+- RewriteEngine On (para pasar headers de Authorization)
+- AllowOverride All
+- FallbackResource /index.php
+- SetEnvIf Authorization para pasar el header HTTP_AUTHORIZATION</p>
+<blockquote>
+<p><strong>Nota:</strong> Este vhost apunta a un directorio de <strong>producción</strong> con estructura de deploy (<code>deploy/current/web</code>). Sin embargo, el directorio <code>/srv/www/htdocs/distributors_portal/</code> aparece <strong>vacío</strong> en el momento del análisis.</p>
+</blockquote>
+<hr />
+<h4 id="vhost-2-distributorstestwerfencom">VHost 2: <code>distributorstest.werfen.com</code><a class="headerlink" href="#vhost-2-distributorstestwerfencom" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Archivo config</strong></td>
+<td><code>/etc/apache2/vhosts.d/distributorstest.werfen.com.conf</code></td>
+</tr>
+<tr>
+<td><strong>ServerName</strong></td>
+<td><code>distributorstest.werfen.com</code></td>
+</tr>
+<tr>
+<td><strong>DocumentRoot</strong></td>
+<td><code>/srv/www/htdocs/distributors_portal_test/web</code></td>
+</tr>
+<tr>
+<td><strong>ErrorLog</strong></td>
+<td><code>/var/log/apache2/distributors_portal_test-error_log</code></td>
+</tr>
+<tr>
+<td><strong>Puerto</strong></td>
+<td>80</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Directivas del Directory:</strong>
+- RewriteEngine On (Authorization header passthrough)
+- AllowOverride All
+- FallbackResource /index.php
+- SetEnvIf Authorization</p>
+<blockquote>
+<p><strong>Este es el VHost principal</strong> que sirve el proyecto <code>distributors_portal_test</code>.</p>
+</blockquote>
+<hr />
+<h4 id="vhost-3-sshdistributors-portal-testwerfenlocal">VHost 3: <code>ssh.distributors-portal-test.werfen.local</code><a class="headerlink" href="#vhost-3-sshdistributors-portal-testwerfenlocal" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Archivo config</strong></td>
+<td><code>/etc/apache2/vhosts.d/ssh.distributors-portal-test.werfen.local.conf</code></td>
+</tr>
+<tr>
+<td><strong>ServerName</strong></td>
+<td><code>ssh.distributors-portal-test.werfen.local</code></td>
+</tr>
+<tr>
+<td><strong>DocumentRoot</strong></td>
+<td><code>/srv/www/htdocs/distributors_portal_test/web</code></td>
+</tr>
+<tr>
+<td><strong>ErrorLog</strong></td>
+<td><code>/var/log/apache2/distributors_portal_test-error_log</code></td>
+</tr>
+<tr>
+<td><strong>Puerto</strong></td>
+<td>80</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Mismo DocumentRoot</strong> que VHost 2. Es un alias para acceso interno (red local <code>.werfen.local</code>).</p>
+</blockquote>
+<hr />
+<h2 id="4-configuracion-php">4. Configuración PHP<a class="headerlink" href="#4-configuracion-php" title="Permanent link">&para;</a></h2>
+<h3 id="41-version-y-motor">4.1 Versión y Motor<a class="headerlink" href="#41-version-y-motor" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Versión PHP</strong></td>
+<td>7.4.30</td>
+</tr>
+<tr>
+<td><strong>Build date</strong></td>
+<td>Jun 10 2022</td>
+</tr>
+<tr>
+<td><strong>Thread Safety</strong></td>
+<td>NTS (Non Thread Safe)</td>
+</tr>
+<tr>
+<td><strong>Zend Engine</strong></td>
+<td>v3.4.0</td>
+</tr>
+<tr>
+<td><strong>OPcache</strong></td>
+<td>Zend OPcache v7.4.30</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-archivos-de-configuracion">4.2 Archivos de Configuración<a class="headerlink" href="#42-archivos-de-configuracion" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Archivo</th>
+<th>Ruta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>php.ini (CLI)</strong></td>
+<td><code>/etc/php7/cli/php.ini</code></td>
+</tr>
+<tr>
+<td><strong>Directorio de módulos</strong></td>
+<td><code>/etc/php7/conf.d/</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-modulos-php-instalados-65-modulos">4.3 Módulos PHP Instalados (65 módulos)<a class="headerlink" href="#43-modulos-php-instalados-65-modulos" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>bcmath, bz2, calendar, Core, ctype, curl, date, dba, dom, enchant, 
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>exif, fileinfo, filter, ftp, gd, gettext, gmp, hash, iconv, intl, 
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>json, ldap, libxml, mbstring, mysqli, mysqlnd, odbc, openssl, pcntl, 
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>pcre, PDO, pdo_mysql, PDO_ODBC, pdo_pgsql, pdo_sqlite, pgsql, Phar, 
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>posix, readline, Reflection, session, shmop, SimpleXML, snmp, soap, 
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>sockets, sodium, SPL, sqlite3, standard, sysvmsg, sysvsem, sysvshm, 
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>tidy, tokenizer, xml, xmlreader, xmlrpc, xmlwriter, xsl, 
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>Zend OPcache, zip, zlib
+</span></code></pre></div>
+<p><strong>Módulos clave para Drupal:</strong> mysqli, pdo_mysql, gd, mbstring, json, xml, curl, openssl, intl, zip</p>
+<hr />
+<h2 id="5-base-de-datos-mariadb">5. Base de Datos - MariaDB<a class="headerlink" href="#5-base-de-datos-mariadb" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Motor</strong></td>
+<td>MariaDB 10.11.9</td>
+</tr>
+<tr>
+<td><strong>Puerto</strong></td>
+<td>3306</td>
+</tr>
+<tr>
+<td><strong>Bind Address</strong></td>
+<td>127.0.0.1 (solo local)</td>
+</tr>
+<tr>
+<td><strong>Base de datos</strong></td>
+<td><code>distributors_portal_test</code></td>
+</tr>
+<tr>
+<td><strong>Usuario DB</strong></td>
+<td><code>distributors_portal_test</code></td>
+</tr>
+<tr>
+<td><strong>Driver Drupal</strong></td>
+<td>mysql (Drupal\Core\Database\Driver\mysql)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-proyecto-distributors_portal_test">6. Proyecto: distributors_portal_test<a class="headerlink" href="#6-proyecto-distributors_portal_test" title="Permanent link">&para;</a></h2>
+<h3 id="61-informacion-general">6.1 Información General<a class="headerlink" href="#61-informacion-general" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ruta</strong></td>
+<td><code>/srv/www/htdocs/distributors_portal_test/</code></td>
+</tr>
+<tr>
+<td><strong>Tamaño en disco</strong></td>
+<td>267 MB</td>
+</tr>
+<tr>
+<td><strong>CMS</strong></td>
+<td><strong>Drupal 9.4.8</strong></td>
+</tr>
+<tr>
+<td><strong>Template</strong></td>
+<td>drupal/recommended-project</td>
+</tr>
+<tr>
+<td><strong>Licencia</strong></td>
+<td>GPL-2.0-or-later</td>
+</tr>
+<tr>
+<td><strong>PHP mínimo soportado</strong></td>
+<td>7.4.0</td>
+</tr>
+<tr>
+<td><strong>PHP recomendado</strong></td>
+<td>8.0</td>
+</tr>
+<tr>
+<td><strong>Propietario archivos</strong></td>
+<td>deploy:www</td>
+</tr>
+<tr>
+<td><strong>Control de versiones</strong></td>
+<td>Git (directorio .git presente)</td>
+</tr>
+<tr>
+<td><strong>DDEV</strong></td>
+<td>Configurado (directorio .ddev presente)</td>
+</tr>
+<tr>
+<td><strong>Entorno</strong></td>
+<td><strong>Test</strong> (<code>'name' =&gt; 'test'</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-estructura-del-proyecto">6.2 Estructura del Proyecto<a class="headerlink" href="#62-estructura-del-proyecto" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/srv/www/htdocs/distributors_portal_test/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── .ddev/                  # Configuración DDEV (desarrollo local)
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>├── .editorconfig
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>├── .git/                   # Repositorio Git
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>├── .gitattributes
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>├── .gitignore
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>├── composer.json           # Dependencias Composer
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>├── composer.lock
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>├── config/                 # Configuración exportada de Drupal
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>├── vendor/                 # Dependencias de terceros (37 subdirectorios)
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>└── web/                    # DocumentRoot del sitio (webroot)
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    ├── core/               # Core de Drupal 9.4.8
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    ├── modules/
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    │   ├── contrib/        # Módulos contribuidos
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    │   └── custom/         # Módulos personalizados (Werfen)
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    ├── themes/
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    │   ├── contrib/
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    │   └── custom/         # Temas personalizados
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    ├── sites/
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    │   └── default/
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    │       ├── settings.php
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    │       └── settings.local.php
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>    └── .htaccess
+</span></code></pre></div>
+<h3 id="63-dependencias-composer-composerjson">6.3 Dependencias Composer (composer.json)<a class="headerlink" href="#63-dependencias-composer-composerjson" title="Permanent link">&para;</a></h3>
+<h4 id="dependencias-principales-require">Dependencias principales (require):<a class="headerlink" href="#dependencias-principales-require" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Paquete</th>
+<th>Versión</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>drupal/core-recommended</code></td>
+<td>^9.1</td>
+<td>Core de Drupal 9</td>
+</tr>
+<tr>
+<td><code>drupal/address</code></td>
+<td>~1.0</td>
+<td>Gestión de direcciones</td>
+</tr>
+<tr>
+<td><code>drupal/admin_toolbar</code></td>
+<td>^3.0</td>
+<td>Barra de administración mejorada</td>
+</tr>
+<tr>
+<td><code>drupal/bootstrap</code></td>
+<td>^3.23</td>
+<td>Tema Bootstrap</td>
+</tr>
+<tr>
+<td><code>drupal/config_pages</code></td>
+<td>^2.9</td>
+<td>Páginas de configuración</td>
+</tr>
+<tr>
+<td><code>drupal/devel</code></td>
+<td>^4.1</td>
+<td>Herramientas de desarrollo</td>
+</tr>
+<tr>
+<td><code>drupal/hook_event_dispatcher</code></td>
+<td>^2.5</td>
+<td>Dispatcher de eventos/hooks</td>
+</tr>
+<tr>
+<td><code>drupal/page_manager</code></td>
+<td>4.0-beta6</td>
+<td>Gestión de páginas</td>
+</tr>
+<tr>
+<td><code>drupal/webform</code></td>
+<td>^6.0</td>
+<td>Formularios web</td>
+</tr>
+<tr>
+<td><code>drush/drush</code></td>
+<td>^10</td>
+<td>CLI para Drupal</td>
+</tr>
+<tr>
+<td><code>phpoffice/phpspreadsheet</code></td>
+<td>^1.17</td>
+<td>Manejo de archivos Excel/Spreadsheet</td>
+</tr>
+</tbody>
+</table>
+<h3 id="64-modulos-contribuidos-contrib">6.4 Módulos Contribuidos (contrib)<a class="headerlink" href="#64-modulos-contribuidos-contrib" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Módulo</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>address</code></td>
+<td>Campos de dirección postal</td>
+</tr>
+<tr>
+<td><code>admin_toolbar</code></td>
+<td>Toolbar de admin mejorado</td>
+</tr>
+<tr>
+<td><code>config_pages</code></td>
+<td>Configuración por páginas</td>
+</tr>
+<tr>
+<td><code>ctools</code></td>
+<td>Herramientas para desarrolladores</td>
+</tr>
+<tr>
+<td><code>devel</code></td>
+<td>Depuración y desarrollo</td>
+</tr>
+<tr>
+<td><code>hook_event_dispatcher</code></td>
+<td>Sistema de eventos</td>
+</tr>
+<tr>
+<td><code>page_manager</code></td>
+<td>Gestión de páginas/variantes</td>
+</tr>
+<tr>
+<td><code>webform</code></td>
+<td>Formularios avanzados</td>
+</tr>
+</tbody>
+</table>
+<h3 id="65-modulos-personalizados-custom-werfen">6.5 Módulos Personalizados (custom) - WERFEN<a class="headerlink" href="#65-modulos-personalizados-custom-werfen" title="Permanent link">&para;</a></h3>
+<p>Estos son los módulos desarrollados específicamente para el portal de distribuidores:</p>
+<table>
+<thead>
+<tr>
+<th>Módulo</th>
+<th>Descripción probable</th>
+<th>Última modificación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ebusiness</strong></td>
+<td>Módulo principal de e-business/comercio</td>
+<td>Oct 2024</td>
+</tr>
+<tr>
+<td><strong>wleb_backorder</strong></td>
+<td>Gestión de pedidos pendientes (backorders)</td>
+<td>Jun 2021</td>
+</tr>
+<tr>
+<td><strong>wleb_basket</strong></td>
+<td>Carrito/cesta de compras</td>
+<td>Jun 2021</td>
+</tr>
+<tr>
+<td><strong>wleb_core</strong></td>
+<td>Módulo base/core del portal</td>
+<td>Jun 2021</td>
+</tr>
+<tr>
+<td><strong>wleb_documentation</strong></td>
+<td>Gestión de documentación</td>
+<td>Oct 2024</td>
+</tr>
+<tr>
+<td><strong>wleb_draft</strong></td>
+<td>Borradores de pedidos</td>
+<td>Jun 2021</td>
+</tr>
+<tr>
+<td><strong>wleb_offer</strong></td>
+<td>Gestión de ofertas comerciales</td>
+<td>Oct 2024</td>
+</tr>
+<tr>
+<td><strong>wleb_order</strong></td>
+<td>Gestión de pedidos</td>
+<td>Jun 2021</td>
+</tr>
+<tr>
+<td><strong>wleb_rga</strong></td>
+<td>Devoluciones (Return Goods Authorization)</td>
+<td>Jun 2021</td>
+</tr>
+<tr>
+<td><strong>wleb_tracking</strong></td>
+<td>Seguimiento de envíos/pedidos</td>
+<td>Abr 2026 (recién modificado)</td>
+</tr>
+<tr>
+<td><strong>wleb_user</strong></td>
+<td>Gestión de usuarios del portal</td>
+<td>Oct 2024</td>
+</tr>
+<tr>
+<td><strong>wleb_ws</strong></td>
+<td>Web Services / integración SAP</td>
+<td>Oct 2024</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Nota:</strong> El prefijo <code>wleb_</code> corresponde a "Werfen Lab E-Business".</p>
+</blockquote>
+<h3 id="66-tema-personalizado">6.6 Tema Personalizado<a class="headerlink" href="#66-tema-personalizado" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Tema</th>
+<th>Base</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>wleb_bootstrap</strong></td>
+<td>Bootstrap 3 (Drupal)</td>
+<td>Tema personalizado del portal basado en Bootstrap</td>
+</tr>
+</tbody>
+</table>
+<h3 id="67-configuracion-del-entorno-settingslocalphp">6.7 Configuración del Entorno (settings.local.php)<a class="headerlink" href="#67-configuracion-del-entorno-settingslocalphp" title="Permanent link">&para;</a></h3>
+<h4 id="base-de-datos">Base de Datos<a class="headerlink" href="#base-de-datos" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Database:</strong> <code>distributors_portal_test</code></li>
+<li><strong>User:</strong> <code>distributors_portal_test</code></li>
+<li><strong>Host:</strong> localhost:3306</li>
+<li><strong>Driver:</strong> MySQL</li>
+</ul>
+<h4 id="integracion-sap-web-services">Integración SAP (Web Services)<a class="headerlink" href="#integracion-sap-web-services" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>URL del WS SAP:</strong> <code>erpqas.werfen.com/zsapui5_json</code> (entorno QAS de SAP)</li>
+<li><strong>Usuario WS:</strong> ZWEBSERVICE</li>
+<li><strong>Protocolo:</strong> HTTPS</li>
+</ul>
+<blockquote>
+<p>El proyecto se integra con SAP ERP mediante web services REST/JSON para funcionalidades de negocio (pedidos, ofertas, tracking, etc.).</p>
+</blockquote>
+<h4 id="configuracion-de-proxy-inverso">Configuración de Proxy Inverso<a class="headerlink" href="#configuracion-de-proxy-inverso" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Reverse Proxy:</strong> Habilitado (<code>$settings['reverse_proxy'] = TRUE</code>)</li>
+<li><strong>IP del Proxy:</strong> 212.163.185.1</li>
+<li><strong>URL Base:</strong> <code>https://distributorstest.werfen.com</code></li>
+<li><strong>HTTPS:</strong> Habilitado vía proxy (el servidor recibe HTTP, el proxy maneja SSL)</li>
+<li><strong>Header Forwarded:</strong> Configurado</li>
+</ul>
+<h4 id="trusted-hosts">Trusted Hosts<a class="headerlink" href="#trusted-hosts" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>distributorstest.werfen.com
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>10.120.204.45
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>ssh.distributors-portal-test.werfen.local
+</span></code></pre></div>
+<h4 id="configuracion-de-organizaciones-de-ventas-werfen">Configuración de Organizaciones de Ventas (Werfen)<a class="headerlink" href="#configuracion-de-organizaciones-de-ventas-werfen" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Organización</th>
+<th>ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>China</td>
+<td>167</td>
+</tr>
+<tr>
+<td>Hong Kong</td>
+<td>191</td>
+</tr>
+<tr>
+<td>Korea</td>
+<td>165</td>
+</tr>
+<tr>
+<td>México</td>
+<td>180</td>
+</tr>
+<tr>
+<td>Brasil</td>
+<td>176</td>
+</tr>
+<tr>
+<td>Japón</td>
+<td>160</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reglas de negocio configuradas:</strong>
+- <strong>Sin control de cantidad en ofertas:</strong> México, Japón, Brasil
+- <strong>Sin acceso a referencias:</strong> Japón
+- <strong>Uso de oferta completa:</strong> China</p>
+<h4 id="cache">Caché<a class="headerlink" href="#cache" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Render cache:</strong> Deshabilitada (<code>cache.backend.null</code>)</li>
+<li><strong>Dynamic page cache:</strong> Deshabilitada (<code>cache.backend.null</code>)</li>
+</ul>
+<blockquote>
+<p>Las cachés están deshabilitadas, lo cual es correcto para un <strong>entorno de test</strong>.</p>
+</blockquote>
+<h4 id="debug">Debug<a class="headerlink" href="#debug" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>wleb_debug = TRUE</code></li>
+</ul>
+<hr />
+<h2 id="7-segundo-proyecto-distributors_portal-produccion">7. Segundo Proyecto: distributors_portal (Producción)<a class="headerlink" href="#7-segundo-proyecto-distributors_portal-produccion" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ruta</strong></td>
+<td><code>/srv/www/htdocs/distributors_portal/</code></td>
+</tr>
+<tr>
+<td><strong>VHost</strong></td>
+<td><code>distributorstest-php74.werfen.com</code></td>
+</tr>
+<tr>
+<td><strong>DocumentRoot</strong></td>
+<td><code>/srv/www/htdocs/distributors_portal/production/deploy/current/web</code></td>
+</tr>
+<tr>
+<td><strong>Estado</strong></td>
+<td>Directorio <strong>vacío</strong> (sin contenido desplegado actualmente)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Este vhost parece corresponder a una configuración de despliegue (posiblemente con Capistrano o similar por la estructura <code>deploy/current/web</code>) pero <strong>no tiene contenido desplegado</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="8-diagrama-de-arquitectura">8. Diagrama de Arquitectura<a class="headerlink" href="#8-diagrama-de-arquitectura" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>                    Internet
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>                       │
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>                       ▼
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>            ┌─────────────────────┐
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>            │   Reverse Proxy     │
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>            │   212.163.185.1     │
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>            │   (SSL Termination) │
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>            │   HTTPS → HTTP      │
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>            └─────────┬───────────┘
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>                      │ HTTP :80
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>                      ▼
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>            ┌─────────────────────┐
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>            │  Apache 2.4.58      │
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>            │  10.120.204.25:80   │
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>            │  mod_php7 (PHP 7.4) │
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>            ├─────────────────────┤
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>            │  VHosts:            │
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>            │  ├ distributorstest │
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>            │  │ .werfen.com      │──► /srv/www/htdocs/distributors_portal_test/web
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>            │  ├ ssh.distributors │
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>            │  │ -portal-test     │──► /srv/www/htdocs/distributors_portal_test/web
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>            │  │ .werfen.local    │    (mismo proyecto, acceso interno)
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>            │  └ distributorstest │
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>            │    -php74.werfen.com│──► /srv/www/htdocs/distributors_portal/ (vacío)
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>            └─────────┬───────────┘
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>                      │
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>                      ▼
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>            ┌─────────────────────┐
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>            │  MariaDB 10.11.9    │
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>            │  localhost:3306     │
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>            │  DB: distributors_  │
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>            │  portal_test        │
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>            └─────────────────────┘
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>            ┌─────────────────────┐
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>            │  SAP ERP (externo)  │
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>            │  erpqas.werfen.com  │
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>            │  /zsapui5_json      │
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>            │  (Web Services)     │
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>            └─────────────────────┘
+</span></code></pre></div>
+<hr />
+<h2 id="9-resumen-tecnologico">9. Resumen Tecnológico<a class="headerlink" href="#9-resumen-tecnologico" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Capa</th>
+<th>Tecnología</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SO</strong></td>
+<td>SUSE Linux Enterprise Server 15 SP6</td>
+</tr>
+<tr>
+<td><strong>Servidor Web</strong></td>
+<td>Apache 2.4.58 (mod_php)</td>
+</tr>
+<tr>
+<td><strong>Lenguaje</strong></td>
+<td>PHP 7.4.30</td>
+</tr>
+<tr>
+<td><strong>CMS</strong></td>
+<td>Drupal 9.4.8</td>
+</tr>
+<tr>
+<td><strong>Base de Datos</strong></td>
+<td>MariaDB 10.11.9</td>
+</tr>
+<tr>
+<td><strong>Tema</strong></td>
+<td>Bootstrap 3 (tema personalizado wleb_bootstrap)</td>
+</tr>
+<tr>
+<td><strong>Gestión de dependencias</strong></td>
+<td>Composer</td>
+</tr>
+<tr>
+<td><strong>CLI Drupal</strong></td>
+<td>Drush 10</td>
+</tr>
+<tr>
+<td><strong>Integración externa</strong></td>
+<td>SAP ERP vía Web Services REST/JSON</td>
+</tr>
+<tr>
+<td><strong>SSL</strong></td>
+<td>Terminado en reverse proxy externo</td>
+</tr>
+<tr>
+<td><strong>Entorno</strong></td>
+<td>Test</td>
+</tr>
+<tr>
+<td><strong>Desarrollo local</strong></td>
+<td>DDEV configurado</td>
+</tr>
+<tr>
+<td><strong>Control de versiones</strong></td>
+<td>Git</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-observaciones-y-notas">10. Observaciones y Notas<a class="headerlink" href="#10-observaciones-y-notas" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Drupal 9.4.8 está en End of Life</strong> - Drupal 9 llegó a su fin de vida en noviembre de 2023. Se recomienda migrar a Drupal 10 o superior.</p>
+</li>
+<li>
+<p><strong>PHP 7.4 está en End of Life</strong> - PHP 7.4 dejó de recibir soporte de seguridad en noviembre de 2022. Se recomienda actualizar a PHP 8.1+.</p>
+</li>
+<li>
+<p><strong>Nginx instalado pero inactivo</strong> - El paquete nginx parece estar presente pero el servicio está inactivo y el binario no está en el PATH.</p>
+</li>
+<li>
+<p><strong>Cachés deshabilitadas</strong> - Correcto para un entorno de test, pero no para producción.</p>
+</li>
+<li>
+<p><strong>Debug activado</strong> - <code>wleb_debug = TRUE</code> está activado, apropiado para test.</p>
+</li>
+<li>
+<p><strong>Sin HTTPS directo</strong> - Apache solo escucha en el puerto 80. Todo el tráfico HTTPS se gestiona a través del reverse proxy.</p>
+</li>
+<li>
+<p><strong>Proyecto distributors_portal vacío</strong> - El vhost <code>distributorstest-php74.werfen.com</code> apunta a un directorio que no tiene contenido desplegado.</p>
+</li>
+<li>
+<p><strong>El servidor lleva 535 días encendido</strong> - No se ha reiniciado en casi 1.5 años.</p>
+</li>
+<li>
+<p><strong>Recursos infrautilizados</strong> - El servidor tiene 31 GB de RAM pero solo usa 1.8 GB. El CPU es un solo vCPU.</p>
+</li>
+<li>
+<p><strong>Integración SAP</strong> - El proyecto se conecta al entorno QAS (Quality Assurance) de SAP, coherente con ser un entorno de test.</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../../server-info/server-overview/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Server Info">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Server Info
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../logs/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Logs">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Logs
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Werfen DevOps — <a href="constitution/">Constitución del proyecto</a>
+
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.indexes", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

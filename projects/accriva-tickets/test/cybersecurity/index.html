@@ -1,0 +1,2518 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación centralizada de proyectos, entornos y servidores">
+      
+      
+        <meta name="author" content="Werfen DevOps">
+      
+      
+      
+        <link rel="prev" href="../devops/">
+      
+      
+        <link rel="next" href="../../../../constitution/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Cybersecurity - DevOps Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ciberseguridad-accriva-tickets-test" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="DevOps Documentation" class="md-header__button md-logo" aria-label="DevOps Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DevOps Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cybersecurity
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Proyectos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../constitution/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Constitución
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="DevOps Documentation" class="md-nav__button md-logo" aria-label="DevOps Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DevOps Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyectos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Proyectos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../distributors-portal/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributors Portal
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Distributors Portal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../distributors-portal/test/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/server-info/server-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_3" id="__nav_2_2_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Stack
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Web Stack
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/web-stack/full-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Full Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/web-stack/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/web-stack/log-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Análisis en Vivo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/cybersecurity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cybersecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accriva Tickets
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Accriva Tickets
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../server-info/server-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2_3" id="__nav_2_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Stack
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Web Stack
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-stack/full-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Full Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-stack/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-stack/log-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Análisis en Vivo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cybersecurity
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cybersecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-ejecutivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen Ejecutivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssl-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL / TLS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSL / TLS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#certificado-actual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificado actual
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hallazgos-criticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hallazgos Críticos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hallazgos Críticos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-servicio-nodejs-ejecutandose-como-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Servicio Node.js ejecutándose como root
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cors-wildcard-access-control-allow-origin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. CORS Wildcard — Access-Control-Allow-Origin: *
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-certificado-ssl-expirado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Certificado SSL expirado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hallazgos-de-alto-riesgo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hallazgos de Alto Riesgo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hallazgos de Alto Riesgo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-node_envdevelopment-en-servicio-de-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. NODE_ENV=development en servicio de producción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-sin-reglas-de-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Sin reglas de firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-dependencias-npm-con-vulnerabilidades-conocidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Dependencias npm con vulnerabilidades conocidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hallazgos-de-riesgo-medio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hallazgos de Riesgo Medio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hallazgos de Riesgo Medio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7-kernel-y-os-sin-soporte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Kernel y OS sin soporte
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-swap-saturada-al-90" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Swap saturada al 90%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-typo-en-configuracion-dns-de-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Typo en configuración DNS de Nginx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-backups-sin-cifrar-en-el-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Backups sin cifrar en el servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-archivos-env-con-credenciales-sap-accesibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Archivos .env con credenciales SAP accesibles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#superficie-de-ataque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Superficie de Ataque
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controles-de-seguridad-activos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controles de Seguridad Activos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan-de-remediacion-priorizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plan de Remediación Priorizado
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../constitution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constitución
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-ejecutivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen Ejecutivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssl-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL / TLS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSL / TLS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#certificado-actual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificado actual
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hallazgos-criticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hallazgos Críticos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hallazgos Críticos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-servicio-nodejs-ejecutandose-como-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Servicio Node.js ejecutándose como root
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cors-wildcard-access-control-allow-origin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. CORS Wildcard — Access-Control-Allow-Origin: *
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-certificado-ssl-expirado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Certificado SSL expirado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hallazgos-de-alto-riesgo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hallazgos de Alto Riesgo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hallazgos de Alto Riesgo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-node_envdevelopment-en-servicio-de-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. NODE_ENV=development en servicio de producción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-sin-reglas-de-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Sin reglas de firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-dependencias-npm-con-vulnerabilidades-conocidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Dependencias npm con vulnerabilidades conocidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hallazgos-de-riesgo-medio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hallazgos de Riesgo Medio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hallazgos de Riesgo Medio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7-kernel-y-os-sin-soporte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Kernel y OS sin soporte
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-swap-saturada-al-90" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Swap saturada al 90%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-typo-en-configuracion-dns-de-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Typo en configuración DNS de Nginx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-backups-sin-cifrar-en-el-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Backups sin cifrar en el servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-archivos-env-con-credenciales-sap-accesibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Archivos .env con credenciales SAP accesibles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#superficie-de-ataque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Superficie de Ataque
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controles-de-seguridad-activos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controles de Seguridad Activos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan-de-remediacion-priorizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plan de Remediación Priorizado
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Proyectos
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Accriva Tickets
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    TEST
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ciberseguridad-accriva-tickets-test">Ciberseguridad — Accriva Tickets TEST<a class="headerlink" href="#ciberseguridad-accriva-tickets-test" title="Permanent link">&para;</a></h1>
+<p><strong>Servidor:</strong> ACCRIVATICKETSTEST (10.120.204.45)<br />
+<strong>Fecha de auditoría:</strong> 2026-04-27</p>
+<hr />
+<h2 id="resumen-ejecutivo"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5M11 7h2v6h-2m0 2h2v2h-2"/></svg></span> Resumen Ejecutivo<a class="headerlink" href="#resumen-ejecutivo" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Estado general: ALTO RIESGO</p>
+<p>Se han identificado <strong>6 hallazgos críticos</strong> y <strong>5 hallazgos de riesgo medio</strong>. El hallazgo más grave es el <strong>certificado SSL expirado desde 2020</strong>, seguido del servicio Node.js ejecutándose como root con NODE_ENV=development.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Severidad</th>
+<th>Cantidad</th>
+<th>Hallazgos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔴 Crítico</td>
+<td>3</td>
+<td>SSL expirado, servicio como root, CORS wildcard</td>
+</tr>
+<tr>
+<td>🟠 Alto</td>
+<td>3</td>
+<td>NODE_ENV=development, sin firewall, dependencias vulnerables</td>
+</tr>
+<tr>
+<td>🟡 Medio</td>
+<td>5</td>
+<td>Kernel obsoleto, swap saturada, typo DNS, backups sin cifrar, SLES sin soporte</td>
+</tr>
+<tr>
+<td>🟢 Bajo</td>
+<td>2</td>
+<td>Logs sin rotación, Apache redundante</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ssl-tls"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 3c-1.11 0-2 .89-2 2v10a2 2 0 0 0 2 2h8v5l3-3 3 3v-5h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4m8 2 3 2 3-2v3.5l3 1.5-3 1.5V15l-3-2-3 2v-3.5L9 10l3-1.5zM4 5h5v2H4zm0 4h3v2H4zm0 4h5v2H4z"/></svg></span> SSL / TLS<a class="headerlink" href="#ssl-tls" title="Permanent link">&para;</a></h2>
+<h3 id="certificado-actual">Certificado actual<a class="headerlink" href="#certificado-actual" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sujeto</strong></td>
+<td><code>CN=*.werfen.com</code> (wildcard)</td>
+</tr>
+<tr>
+<td><strong>Emisor</strong></td>
+<td>GoDaddy Secure Certificate Authority - G2</td>
+</tr>
+<tr>
+<td><strong>Válido desde</strong></td>
+<td>2017-11-13</td>
+</tr>
+<tr>
+<td><strong>Expirado</strong></td>
+<td><strong>2020-12-05</strong> ⛔</td>
+</tr>
+<tr>
+<td><strong>Ubicación cert</strong></td>
+<td><code>/etc/apache2/ssl.crt/werfen.crt</code></td>
+</tr>
+<tr>
+<td><strong>Ubicación key</strong></td>
+<td><code>/etc/nginx/certs/werfen.key</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">Certificado expirado hace más de 5 años</p>
+<p>El certificado SSL <code>*.werfen.com</code> expiró el <strong>5 de diciembre de 2020</strong>. Los navegadores muestran advertencias de seguridad. Cualquier comunicación HTTPS está técnicamente cifrada pero <strong>no es de confianza</strong>.</p>
+<p><strong>Remediación inmediata:</strong></p>
+<ol>
+<li>Obtener nuevo certificado wildcard <code>*.werfen.com</code> (GoDaddy o Let's Encrypt)</li>
+<li>Reemplazar en <code>/etc/apache2/ssl.crt/werfen.crt</code> y <code>/etc/nginx/certs/werfen.key</code></li>
+<li><code>systemctl reload nginx</code></li>
+<li>Verificar: <code>openssl s_client -connect accrivaticketstest.werfen.com:443</code></li>
+</ol>
+</div>
+<hr />
+<h2 id="hallazgos-criticos"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.66 11.2c-.23-.3-.51-.56-.77-.82-.67-.6-1.43-1.03-2.07-1.66C13.33 7.26 13 4.85 13.95 3c-.95.23-1.78.75-2.49 1.32-2.59 2.08-3.61 5.75-2.39 8.9.04.1.08.2.08.33 0 .22-.15.42-.35.5-.23.1-.47.04-.66-.12a.6.6 0 0 1-.14-.17c-1.13-1.43-1.31-3.48-.55-5.12C5.78 10 4.87 12.3 5 14.47c.06.5.12 1 .29 1.5.14.6.41 1.2.71 1.73 1.08 1.73 2.95 2.97 4.96 3.22 2.14.27 4.43-.12 6.07-1.6 1.83-1.66 2.47-4.32 1.53-6.6l-.13-.26c-.21-.46-.77-1.26-.77-1.26m-3.16 6.3c-.28.24-.74.5-1.1.6-1.12.4-2.24-.16-2.9-.82 1.19-.28 1.9-1.16 2.11-2.05.17-.8-.15-1.46-.28-2.23-.12-.74-.1-1.37.17-2.06.19.38.39.76.63 1.06.77 1 1.98 1.44 2.24 2.8.04.14.06.28.06.43.03.82-.33 1.72-.93 2.27"/></svg></span> Hallazgos Críticos<a class="headerlink" href="#hallazgos-criticos" title="Permanent link">&para;</a></h2>
+<h3 id="1-servicio-nodejs-ejecutandose-como-root">1. Servicio Node.js ejecutándose como root<a class="headerlink" href="#1-servicio-nodejs-ejecutandose-como-root" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🔴 Crítico<br />
+<strong>Archivo:</strong> <code>/etc/systemd/system/accrivanodeapi.service</code></p>
+<p>El servicio <code>accrivanodeapi</code> no tiene directivas <code>User=</code> ni <code>Group=</code>, por lo que se ejecuta como <strong>root</strong>. Si un atacante logra Remote Code Execution (RCE) a través de la API, obtiene acceso completo al sistema.</p>
+<p><strong>Remediación:</strong></p>
+<div class="language-ini highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[Service]</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="na">User</span><span class="o">=</span><span class="s">deploy</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="na">Group</span><span class="o">=</span><span class="s">users</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>systemctl<span class="w"> </span>daemon-reload
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>accrivanodeapi
+</span></code></pre></div>
+<hr />
+<h3 id="2-cors-wildcard-access-control-allow-origin">2. CORS Wildcard — Access-Control-Allow-Origin: *<a class="headerlink" href="#2-cors-wildcard-access-control-allow-origin" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🔴 Crítico<br />
+<strong>Archivo:</strong> <code>/srv/www/htdocs/accriva-tickets/services/api/index.js</code></p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cors</span><span class="p">());</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nx">res</span><span class="p">.</span><span class="nx">header</span><span class="p">(</span><span class="s2">&quot;Access-Control-Allow-Origin&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">);</span>
+</span></code></pre></div>
+<p>La API permite peticiones desde <strong>cualquier origen</strong>. Esto permite ataques CSRF y expone la API a cualquier sitio web malicioso.</p>
+<p><strong>Remediación:</strong></p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cors</span><span class="p">({</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nx">origin</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;https://accrivaticketstest.werfen.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;https://distributorstest.werfen.com&#39;</span><span class="p">],</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nx">credentials</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">}));</span>
+</span></code></pre></div>
+<hr />
+<h3 id="3-certificado-ssl-expirado">3. Certificado SSL expirado<a class="headerlink" href="#3-certificado-ssl-expirado" title="Permanent link">&para;</a></h3>
+<p>Ver sección SSL/TLS arriba.</p>
+<hr />
+<h2 id="hallazgos-de-alto-riesgo"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14h-2V9h2m0 9h-2v-2h2M1 21h22L12 2z"/></svg></span> Hallazgos de Alto Riesgo<a class="headerlink" href="#hallazgos-de-alto-riesgo" title="Permanent link">&para;</a></h2>
+<h3 id="4-node_envdevelopment-en-servicio-de-produccion">4. NODE_ENV=development en servicio de producción<a class="headerlink" href="#4-node_envdevelopment-en-servicio-de-produccion" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🟠 Alto<br />
+<strong>Archivo:</strong> <code>/etc/systemd/system/accrivanodeapi.service</code></p>
+<div class="language-ini highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="na">Environment</span><span class="o">=</span><span class="s">NODE_ENV=development</span>
+</span></code></pre></div>
+<p>Esto causa que:</p>
+<ul>
+<li>Express muestre <strong>stack traces completos</strong> en errores</li>
+<li>Se cargue <code>.env.development</code> (con posibles credenciales de dev)</li>
+<li>Se deshabiliten optimizaciones de rendimiento</li>
+<li>Se expongan detalles internos de la aplicación</li>
+</ul>
+<p><strong>Remediación:</strong></p>
+<div class="language-ini highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="na">Environment</span><span class="o">=</span><span class="s">NODE_ENV=production</span>
+</span></code></pre></div>
+<hr />
+<h3 id="5-sin-reglas-de-firewall">5. Sin reglas de firewall<a class="headerlink" href="#5-sin-reglas-de-firewall" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🟠 Alto</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Chain INPUT (policy ACCEPT)
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>target     prot opt source               destination
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Chain FORWARD (policy ACCEPT)
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Chain OUTPUT (policy ACCEPT)
+</span></code></pre></div>
+<p>Todas las cadenas de iptables tienen policy <strong>ACCEPT</strong> sin ninguna regla. Cualquier puerto abierto es accesible desde toda la red.</p>
+<p><strong>Remediación:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Solo permitir tráfico necesario</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-i<span class="w"> </span>lo<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-m<span class="w"> </span>state<span class="w"> </span>--state<span class="w"> </span>ESTABLISHED,RELATED<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">22</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT<span class="w">    </span><span class="c1"># SSH</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">80</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT<span class="w">    </span><span class="c1"># HTTP</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">443</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT<span class="w">   </span><span class="c1"># HTTPS</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">5666</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT<span class="w">  </span><span class="c1"># Nagios</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-j<span class="w"> </span>DROP
+</span></code></pre></div>
+<hr />
+<h3 id="6-dependencias-npm-con-vulnerabilidades-conocidas">6. Dependencias npm con vulnerabilidades conocidas<a class="headerlink" href="#6-dependencias-npm-con-vulnerabilidades-conocidas" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🟠 Alto</p>
+<table>
+<thead>
+<tr>
+<th>Paquete</th>
+<th>Versión actual</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>axios</code></td>
+<td>^0.18.0</td>
+<td>Vulnerabilidades de SSRF, prototype pollution</td>
+</tr>
+<tr>
+<td><code>request</code></td>
+<td>^2.88.0</td>
+<td><strong>DEPRECATED</strong> desde 2020, sin parches</td>
+</tr>
+<tr>
+<td><code>node-fetch</code></td>
+<td>^2.3.0</td>
+<td>Vulnerabilidades en v2</td>
+</tr>
+<tr>
+<td><code>crypto-js</code></td>
+<td>^3.1.9-1</td>
+<td>Versión con bugs conocidos</td>
+</tr>
+<tr>
+<td><code>react-scripts</code></td>
+<td>2.1.1</td>
+<td>Muy desactualizado, Webpack 4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Remediación:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>/srv/www/htdocs/accriva-tickets/services/api
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>npm<span class="w"> </span>audit
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>npm<span class="w"> </span>audit<span class="w"> </span>fix
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Actualizar manualmente las dependencias deprecated</span>
+</span></code></pre></div>
+<hr />
+<h2 id="hallazgos-de-riesgo-medio"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 13h-2V7h2m0 10h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg></span> Hallazgos de Riesgo Medio<a class="headerlink" href="#hallazgos-de-riesgo-medio" title="Permanent link">&para;</a></h2>
+<h3 id="7-kernel-y-os-sin-soporte">7. Kernel y OS sin soporte<a class="headerlink" href="#7-kernel-y-os-sin-soporte" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Versión</th>
+<th>Fin de soporte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SLES 15 SP1</td>
+<td>15.1</td>
+<td>Enero 2021 (general)</td>
+</tr>
+<tr>
+<td>Kernel</td>
+<td>4.12.14 (2019)</td>
+<td>Sin parches</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-swap-saturada-al-90">8. Swap saturada al 90%<a class="headerlink" href="#8-swap-saturada-al-90" title="Permanent link">&para;</a></h3>
+<p>7.0 GiB de 7.8 GiB de swap en uso — presión de memoria que puede causar OOM kills.</p>
+<h3 id="9-typo-en-configuracion-dns-de-nginx">9. Typo en configuración DNS de Nginx<a class="headerlink" href="#9-typo-en-configuracion-dns-de-nginx" title="Permanent link">&para;</a></h3>
+<p><code>server_name acrrivaticketstest.werfen.com</code> (doble 'r') — funciona solo porque es <code>default_server</code>.</p>
+<h3 id="10-backups-sin-cifrar-en-el-servidor">10. Backups sin cifrar en el servidor<a class="headerlink" href="#10-backups-sin-cifrar-en-el-servidor" title="Permanent link">&para;</a></h3>
+<p>Los directorios <code>accriva-tickets-bk*</code> contienen código fuente y potencialmente archivos <code>.env</code> con credenciales SAP.</p>
+<h3 id="11-archivos-env-con-credenciales-sap-accesibles">11. Archivos .env con credenciales SAP accesibles<a class="headerlink" href="#11-archivos-env-con-credenciales-sap-accesibles" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>-rw-r--r-- 1 deploy users 123 .env.development
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>-rw-r--r-- 1 deploy users 126 .env.production
+</span></code></pre></div>
+<p>Los archivos <code>.env</code> son <strong>legibles por todos</strong> (permisos <code>644</code>). Deberían ser <code>600</code>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/srv/www/htdocs/accriva-tickets/services/api/.env.*
+</span></code></pre></div>
+<hr />
+<h2 id="superficie-de-ataque"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4v2h1a1 1 0 0 1 1 1h7v2h-7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1H2v-2h7a1 1 0 0 1 1-1h1v-2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg></span> Superficie de Ataque<a class="headerlink" href="#superficie-de-ataque" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>graph TB
+    subgraph Expuesto["Puertos expuestos (0.0.0.0)"]
+        P80[":80 HTTP (Nginx)"]
+        P443[":443 HTTPS (Nginx)"]
+        P4000[":4000 Node.js API"]
+        P8080[":8080 Apache"]
+        P22[":22 SSH"]
+        P5666[":5666 Nagios NRPE"]
+    end
+
+    subgraph Localhost["Solo localhost"]
+        P199[":199 SNMP"]
+        P25[":25 Postfix"]
+        P10001[":10001 Qualys Agent"]
+    end
+
+    style P4000 fill:#ff6b6b,color:white
+    style P8080 fill:#ffa94d,color:white
+    style P443 fill:#ff6b6b,color:white</code></pre>
+<div class="admonition danger">
+<p class="admonition-title">Node.js API expuesta directamente</p>
+<p>El puerto <strong>4000</strong> (Node.js API) está escuchando en <code>0.0.0.0</code> — accesible directamente desde la red, sin pasar por Nginx. Debería escuchar solo en <code>127.0.0.1</code>.</p>
+<p><strong>Remediación</strong> en <code>index.js</code>:
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">4000</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">});</span>
+</span></code></pre></div></p>
+</div>
+<hr />
+<h2 id="controles-de-seguridad-activos"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m10 17-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9m-6-8L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5z"/></svg></span> Controles de Seguridad Activos<a class="headerlink" href="#controles-de-seguridad-activos" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Estado</th>
+<th>Herramienta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Antivirus/EDR</td>
+<td>✅ Activo</td>
+<td>Microsoft Defender ATP (<code>mdatp.service</code>)</td>
+</tr>
+<tr>
+<td>Vulnerability Scanner</td>
+<td>✅ Activo</td>
+<td>Qualys Cloud Agent</td>
+</tr>
+<tr>
+<td>Monitorización</td>
+<td>✅ Activo</td>
+<td>Nagios NRPE</td>
+</tr>
+<tr>
+<td>Auditoría del sistema</td>
+<td>✅ Activo</td>
+<td>auditd</td>
+</tr>
+<tr>
+<td>AD Integration</td>
+<td>✅ Activo</td>
+<td>winbind (Samba)</td>
+</tr>
+<tr>
+<td>Firewall</td>
+<td>❌ Desactivado</td>
+<td>iptables (todo ACCEPT)</td>
+</tr>
+<tr>
+<td>IDS/IPS</td>
+<td>❌ No presente</td>
+<td>—</td>
+</tr>
+<tr>
+<td>WAF</td>
+<td>❌ No presente</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Certificate Management</td>
+<td>❌ No funcional</td>
+<td>Cert expirado 2020</td>
+</tr>
+<tr>
+<td>Log monitoring</td>
+<td>❌ No configurado</td>
+<td>Logs sin alertas</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="plan-de-remediacion-priorizado"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m10 17-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9m-6-6a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Plan de Remediación Priorizado<a class="headerlink" href="#plan-de-remediacion-priorizado" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Prioridad</th>
+<th>Acción</th>
+<th>Esfuerzo</th>
+<th>Impacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>🔴 Inmediata</td>
+<td>Renovar certificado SSL</td>
+<td>1h</td>
+<td>Restaurar confianza HTTPS</td>
+</tr>
+<tr>
+<td>2</td>
+<td>🔴 Inmediata</td>
+<td>Cambiar NODE_ENV a production</td>
+<td>5 min</td>
+<td>Ocultar stack traces</td>
+</tr>
+<tr>
+<td>3</td>
+<td>🔴 Inmediata</td>
+<td>Añadir User=deploy al systemd unit</td>
+<td>5 min</td>
+<td>Limitar privilegios</td>
+</tr>
+<tr>
+<td>4</td>
+<td>🔴 Inmediata</td>
+<td>Bind Node.js API a 127.0.0.1</td>
+<td>5 min</td>
+<td>Cerrar puerto 4000</td>
+</tr>
+<tr>
+<td>5</td>
+<td>🟠 Esta semana</td>
+<td>Configurar iptables</td>
+<td>30 min</td>
+<td>Reducir superficie ataque</td>
+</tr>
+<tr>
+<td>6</td>
+<td>🟠 Esta semana</td>
+<td>Restringir CORS origins</td>
+<td>15 min</td>
+<td>Prevenir CSRF</td>
+</tr>
+<tr>
+<td>7</td>
+<td>🟠 Esta semana</td>
+<td><code>chmod 600</code> archivos .env</td>
+<td>1 min</td>
+<td>Proteger credenciales</td>
+</tr>
+<tr>
+<td>8</td>
+<td>🟡 Este mes</td>
+<td>Actualizar dependencias npm</td>
+<td>2h</td>
+<td>Cerrar CVEs conocidos</td>
+</tr>
+<tr>
+<td>9</td>
+<td>🟡 Este mes</td>
+<td>Planificar upgrade a SLES 15 SP5+</td>
+<td>Variable</td>
+<td>Soporte de seguridad</td>
+</tr>
+<tr>
+<td>10</td>
+<td>🟡 Este mes</td>
+<td>Limpiar backups + cifrar sensibles</td>
+<td>30 min</td>
+<td>Reducir exposición</td>
+</tr>
+<tr>
+<td>11</td>
+<td>🟢 Próximo trimestre</td>
+<td>Implementar WAF</td>
+<td>Variable</td>
+<td>Protección de capa 7</td>
+</tr>
+<tr>
+<td>12</td>
+<td>🟢 Próximo trimestre</td>
+<td>Aumentar RAM VM</td>
+<td>15 min</td>
+<td>Resolver swap saturada</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../devops/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: DevOps">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                DevOps
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../../../constitution/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Constitución">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Constitución
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Werfen DevOps — <a href="constitution/">Constitución del proyecto</a>
+
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.indexes", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

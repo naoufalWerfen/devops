@@ -1,0 +1,1924 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación centralizada de proyectos, entornos y servidores">
+      
+      
+        <meta name="author" content="Werfen DevOps">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Ciberseguridad — MyOrders DEMO - DevOps Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ciberseguridad-myorders-demo" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="DevOps Documentation" class="md-header__button md-logo" aria-label="DevOps Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DevOps Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ciberseguridad — MyOrders DEMO
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Proyectos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../constitution/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Constitución
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="DevOps Documentation" class="md-nav__button md-logo" aria-label="DevOps Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DevOps Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyectos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Proyectos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../distributors-portal/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributors Portal
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Distributors Portal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../distributors-portal/test/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/server-info/server-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_3" id="__nav_2_2_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Stack
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Web Stack
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/web-stack/full-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Full Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/web-stack/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/web-stack/log-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Análisis en Vivo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../distributors-portal/test/cybersecurity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cybersecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../accriva-tickets/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accriva Tickets
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Accriva Tickets
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../accriva-tickets/test/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../accriva-tickets/test/server-info/server-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2_3" id="__nav_2_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Stack
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Web Stack
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../accriva-tickets/test/web-stack/full-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Full Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../accriva-tickets/test/web-stack/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../accriva-tickets/test/web-stack/log-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Análisis en Vivo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../accriva-tickets/test/devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../accriva-tickets/test/cybersecurity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cybersecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../constitution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Constitución
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-ejecutivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen Ejecutivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hallazgos-criticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hallazgos Críticos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hallazgos Críticos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-firewall-completamente-abierto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Firewall completamente abierto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-demo-y-produccion-en-el-mismo-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Demo y Producción en el mismo servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-php-81-end-of-life" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PHP 8.1 — End of Life
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-symfony-61-sin-soporte-desde-enero-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Symfony 6.1 — Sin soporte desde enero 2023
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-fuga-de-datos-sap-en-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Fuga de datos SAP en logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hallazgos-de-riesgo-alto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hallazgos de riesgo alto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hallazgos de riesgo alto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6-escaneo-nmap-detectado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Escaneo Nmap detectado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-sso-login-sin-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. SSO Login sin rate limiting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-server_tokens-habilitado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. server_tokens habilitado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-sin-waf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Sin WAF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hallazgos-de-riesgo-medio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hallazgos de riesgo medio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hallazgos de riesgo medio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#10-disco-al-81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Disco al 81%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-csp-con-unsafe-inline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. CSP con 'unsafe-inline'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-slow-query-log-y-binary-log-deshabilitados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Slow query log y binary log deshabilitados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-php-warnings-en-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. PHP warnings en producción
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hallazgos-de-riesgo-bajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hallazgos de riesgo bajo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hallazgos de riesgo bajo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14-logs-compartidos-entre-vhosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Logs compartidos entre vhosts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-buildappjs-404-en-admin-panels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. build/app.js 404 en admin panels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-sin-endpoint-de-health-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Sin endpoint de health check
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#headers-de-seguridad-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Headers de seguridad (Producción)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan-de-remediacion-priorizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plan de remediación priorizado
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ciberseguridad-myorders-demo">Ciberseguridad — MyOrders DEMO<a class="headerlink" href="#ciberseguridad-myorders-demo" title="Permanent link">&para;</a></h1>
+<p><strong>Servidor:</strong> WEBAPPSPROD (10.120.204.93)<br />
+<strong>Fecha de auditoría:</strong> 2026-04-27<br />
+<strong>Entorno:</strong> Demo (también aloja producción)</p>
+<hr />
+<h2 id="resumen-ejecutivo">Resumen Ejecutivo<a class="headerlink" href="#resumen-ejecutivo" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>🔴 <strong>Estado general: ALTO RIESGO</strong> — Se han identificado <strong>5 hallazgos críticos</strong>, <strong>4 de riesgo alto</strong>, <strong>4 de riesgo medio</strong> y <strong>3 de riesgo bajo</strong>. Los hallazgos más graves son el stack obsoleto (PHP 8.1 EOL, Symfony 6.1 EOL), el firewall abierto y la fuga de datos SAP en logs.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Severidad</th>
+<th>Cantidad</th>
+<th>Hallazgos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔴 Crítico</td>
+<td>5</td>
+<td>Firewall abierto, demo/prod compartido, PHP 8.1 EOL, Symfony 6.1 EOL, fuga datos SAP</td>
+</tr>
+<tr>
+<td>🟠 Alto</td>
+<td>4</td>
+<td>Monolog stderr, sin rate limiting, server_tokens on, sin WAF</td>
+</tr>
+<tr>
+<td>🟡 Medio</td>
+<td>4</td>
+<td>CSP unsafe-inline, slow query log off, binary log off, PHP warnings en prod</td>
+</tr>
+<tr>
+<td>🟢 Bajo</td>
+<td>3</td>
+<td>Logs compartidos, RecordedFuture crawler, sin health endpoint</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="hallazgos-criticos">Hallazgos Críticos<a class="headerlink" href="#hallazgos-criticos" title="Permanent link">&para;</a></h2>
+<h3 id="1-firewall-completamente-abierto">1. Firewall completamente abierto<a class="headerlink" href="#1-firewall-completamente-abierto" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🔴 Crítico</p>
+<p>No hay reglas de firewall (iptables) configuradas. Las tres cadenas (INPUT, FORWARD, OUTPUT) están en política ACCEPT.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Chain INPUT (policy ACCEPT) — 0 reglas
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Chain FORWARD (policy ACCEPT) — 0 reglas
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Chain OUTPUT (policy ACCEPT) — 0 reglas
+</span></code></pre></div>
+<p><strong>Impacto</strong>: Cualquier servicio en cualquier puerto es accesible desde la red sin restricción.</p>
+<p><strong>Recomendación</strong>:
+1. Configurar reglas iptables/firewalld para permitir solo puertos necesarios (22, 80, 443)
+2. Restringir acceso a puertos internos (8000-8002, 9000, 3306) a localhost/red interna
+3. Implementar rate limiting para SSH</p>
+<hr />
+<h3 id="2-demo-y-produccion-en-el-mismo-servidor">2. Demo y Producción en el mismo servidor<a class="headerlink" href="#2-demo-y-produccion-en-el-mismo-servidor" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🔴 Crítico</p>
+<p>El servidor <code>WEBAPPSPROD</code> aloja tanto los entornos de <strong>demo</strong> como de <strong>producción</strong> de todas las aplicaciones MyOrders.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/srv/www/htdocs/webapps/demo/ordersapp/     ← Demo
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>/srv/www/htdocs/webapps/prod/ordersapp/     ← Producción
+</span></code></pre></div>
+<p><strong>Impacto</strong>: Un fallo o ataque al entorno demo podría afectar directamente a producción.</p>
+<p><strong>Recomendación</strong>: Separar los entornos en servidores o contenedores independientes.</p>
+<hr />
+<h3 id="3-php-81-end-of-life">3. PHP 8.1 — End of Life<a class="headerlink" href="#3-php-81-end-of-life" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🔴 Crítico</p>
+<p>PHP 8.1 alcanzó su fin de vida el <strong>31 de diciembre de 2025</strong>. No se publican parches de seguridad desde hace 4 meses. Cualquier vulnerabilidad descubierta queda sin corregir.</p>
+<p><strong>Recomendación</strong>: Migrar a PHP 8.2 (soporte hasta dic 2026) o PHP 8.3 (soporte hasta dic 2027).</p>
+<hr />
+<h3 id="4-symfony-61-sin-soporte-desde-enero-2023">4. Symfony 6.1 — Sin soporte desde enero 2023<a class="headerlink" href="#4-symfony-61-sin-soporte-desde-enero-2023" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🔴 Crítico</p>
+<p>Symfony 6.1 es una versión non-LTS cuyo soporte finalizó en <strong>enero 2023</strong>. Lleva más de <strong>3 años sin actualizaciones de seguridad</strong>.</p>
+<p><strong>Recomendación</strong>: Migrar a Symfony 6.4 LTS (soporte hasta nov 2027) o Symfony 7.x.</p>
+<hr />
+<h3 id="5-fuga-de-datos-sap-en-logs">5. Fuga de datos SAP en logs<a class="headerlink" href="#5-fuga-de-datos-sap-en-logs" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🔴 Crítico</p>
+<p>Cada login SSO genera mensajes en el error.log de Nginx con customer IDs, nombres de usuario y respuestas JSON completas de la API SAP.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>[ZQAU_USER_FROM_CLIENTE] Response for customer 0000321227: 
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  username=HOSPIMAX, full response: {&quot;E_USERNAME&quot;:&quot;HOSPIMAX&quot;}
+</span></code></pre></div>
+<p><strong>Riesgo</strong>: Violación GDPR — datos de clientes en texto plano accesibles a cualquiera con lectura del error.log.</p>
+<p><strong>Recomendación</strong>: Cambiar nivel de log a DEBUG, ofuscar customer IDs, revisar retención de logs.</p>
+<hr />
+<h2 id="hallazgos-de-riesgo-alto">Hallazgos de riesgo alto<a class="headerlink" href="#hallazgos-de-riesgo-alto" title="Permanent link">&para;</a></h2>
+<h3 id="6-escaneo-nmap-detectado">6. Escaneo Nmap detectado<a class="headerlink" href="#6-escaneo-nmap-detectado" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🟠 Alto</p>
+<p>El 25/04/2026 a las 06:49 se detectó un escaneo Nmap desde <code>212.163.185.1</code> contra <code>caseportal.werfen.com</code>. Rutas probadas: <code>/owa/</code>, <code>/webui</code>, <code>/HNAP1</code>, <code>/sdk</code>, <code>/versa/login</code>, <code>/cgi-bin/info.cgi</code>, etc. (~20 rutas en 90 segundos).</p>
+<p>También se detectó un segundo scan contra <code>myclaims.werfen.com</code> (23 abril) con ~30 rutas.</p>
+<p><strong>Recomendación</strong>: Implementar rate limiting, fail2ban, verificar con seguridad si los scans son autorizados.</p>
+<hr />
+<h3 id="7-sso-login-sin-rate-limiting">7. SSO Login sin rate limiting<a class="headerlink" href="#7-sso-login-sin-rate-limiting" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🟠 Alto</p>
+<p>Decenas de logins SSO por minuto sin control de velocidad. Permite enumeración de usuarios y brute force de tokens.</p>
+<p><strong>Recomendación</strong>: <code>limit_req_zone</code> en Nginx + Symfony RateLimiter.</p>
+<hr />
+<h3 id="8-server_tokens-habilitado">8. server_tokens habilitado<a class="headerlink" href="#8-server_tokens-habilitado" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🟠 Alto</p>
+<p><code>server_tokens on;</code> en vhosts expone <code>Server: nginx/1.21.5</code>.</p>
+<p><strong>Recomendación</strong>: <code>server_tokens off;</code> en <code>nginx.conf</code>.</p>
+<hr />
+<h3 id="9-sin-waf">9. Sin WAF<a class="headerlink" href="#9-sin-waf" title="Permanent link">&para;</a></h3>
+<p><strong>Severidad:</strong> 🟠 Alto</p>
+<p>No hay ModSecurity, cloud WAF ni ninguna capa de protección. Los escaneos llegaron sin ser bloqueados.</p>
+<p><strong>Recomendación</strong>: ModSecurity con OWASP CRS o Cloud WAF.</p>
+<hr />
+<h2 id="hallazgos-de-riesgo-medio">Hallazgos de riesgo medio<a class="headerlink" href="#hallazgos-de-riesgo-medio" title="Permanent link">&para;</a></h2>
+<h3 id="10-disco-al-81">10. Disco al 81%<a class="headerlink" href="#10-disco-al-81" title="Permanent link">&para;</a></h3>
+<p>1 vCPU para múltiples apps en demo y producción. PHP-FPM alcanza <code>pm.max_children = 10</code> regularmente.</p>
+<h3 id="11-csp-con-unsafe-inline">11. CSP con 'unsafe-inline'<a class="headerlink" href="#11-csp-con-unsafe-inline" title="Permanent link">&para;</a></h3>
+<p>El CSP de producción permite <code>script-src 'unsafe-inline'</code>, reduciendo protección contra XSS.</p>
+<h3 id="12-slow-query-log-y-binary-log-deshabilitados">12. Slow query log y binary log deshabilitados<a class="headerlink" href="#12-slow-query-log-y-binary-log-deshabilitados" title="Permanent link">&para;</a></h3>
+<p>Sin detección de queries lentas ni auditoría de cambios en BD.</p>
+<h3 id="13-php-warnings-en-produccion">13. PHP warnings en producción<a class="headerlink" href="#13-php-warnings-en-produccion" title="Permanent link">&para;</a></h3>
+<p>VendorsPortal genera warnings que exponen rutas internas del servidor.</p>
+<hr />
+<h2 id="hallazgos-de-riesgo-bajo">Hallazgos de riesgo bajo<a class="headerlink" href="#hallazgos-de-riesgo-bajo" title="Permanent link">&para;</a></h2>
+<h3 id="14-logs-compartidos-entre-vhosts">14. Logs compartidos entre vhosts<a class="headerlink" href="#14-logs-compartidos-entre-vhosts" title="Permanent link">&para;</a></h3>
+<p>8 dominios comparten un único <code>error.log</code> y <code>access.log</code>.</p>
+<h3 id="15-buildappjs-404-en-admin-panels">15. build/app.js 404 en admin panels<a class="headerlink" href="#15-buildappjs-404-en-admin-panels" title="Permanent link">&para;</a></h3>
+<p>Webpack Encore no compilado en ordersbackoffice (demo y prod).</p>
+<h3 id="16-sin-endpoint-de-health-check">16. Sin endpoint de health check<a class="headerlink" href="#16-sin-endpoint-de-health-check" title="Permanent link">&para;</a></h3>
+<p><code>/health</code>, <code>/status</code>, <code>/api/version</code> retornan 404.</p>
+<hr />
+<h2 id="headers-de-seguridad-produccion">Headers de seguridad (Producción)<a class="headerlink" href="#headers-de-seguridad-produccion" title="Permanent link">&para;</a></h2>
+<p>El vhost de producción incluye estos headers (el de demo no):</p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cache-Control</strong></td>
+<td><code>no-store, no-cache, must-revalidate, private</code></td>
+</tr>
+<tr>
+<td><strong>Content-Security-Policy</strong></td>
+<td>default-src 'self'; script-src 'self' 'unsafe-inline' cdn.jsdelivr.net, code.jquery.com, cdn.datatables.net, wlpiwik01.werfen.com; style-src 'self' 'unsafe-inline' cdn.datatables.net, use.fontawesome.com; font-src 'self' use.fontawesome.com; connect-src 'self' wlpiwik01.werfen.com; img-src 'self' data: cdn.datatables.net wlpiwik01.werfen.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self' *.werfen.com</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ El CSP permite <code>script-src 'unsafe-inline'</code>. Considerar migrar a nonces o hashes para scripts inline.</p>
+</blockquote>
+<hr />
+<h2 id="plan-de-remediacion-priorizado">Plan de remediación priorizado<a class="headerlink" href="#plan-de-remediacion-priorizado" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Prioridad</th>
+<th>Acción</th>
+<th>Esfuerzo</th>
+<th>Impacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Migrar PHP 8.1 → 8.3</td>
+<td>Alto</td>
+<td>Crítico — EOL sin parches</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Migrar Symfony 6.1 → 6.4 LTS</td>
+<td>Alto</td>
+<td>Crítico — 3 años sin seguridad</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Configurar firewall iptables</td>
+<td>Medio</td>
+<td>Crítico — Todo abierto</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Separar demo/prod</td>
+<td>Alto</td>
+<td>Crítico — Riesgo compartido</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Mover ZQAU logging a Monolog channel</td>
+<td>Bajo</td>
+<td>Alto — Fuga datos GDPR</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Implementar rate limiting login</td>
+<td>Bajo</td>
+<td>Alto — Previene brute force</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>server_tokens off</code></td>
+<td>Bajo</td>
+<td>Medio — Quick win</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Actualizar Nginx 1.21.5 → 1.26.x</td>
+<td>Medio</td>
+<td>Medio — CVEs conocidos</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Implementar WAF</td>
+<td>Medio</td>
+<td>Alto — Protección web</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Migrar CSP a nonces</td>
+<td>Medio</td>
+<td>Medio — Protección XSS</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Werfen DevOps — <a href="constitution/">Constitución del proyecto</a>
+
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.indexes", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
