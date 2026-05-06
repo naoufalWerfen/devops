@@ -3,6 +3,7 @@ const { pool } = require('./db');
 const { runFullSync } = require('./sync');
 const { validateAudit, importAudit } = require('./import');
 const { runRemoteAudit } = require('./remote-audit');
+const { syncVulnerabilities, checkVulnerabilities } = require('./vulnerability');
 
 const router = express.Router();
 
@@ -84,10 +85,14 @@ router.get('/stack', async (_req, res) => {
            COALESCE(p.label, s2.name) AS project_label,
            es.is_eol, es.eol_date, es.latest_version, es.latest_date,
            es.is_lts, es.is_eoas, es.eoas_date, es.release_date,
-           es.is_maintained, es.fetched_at
+           es.is_maintained, es.fetched_at,
+           vs.osv_count, vs.osv_critical, vs.osv_high, vs.osv_medium, vs.osv_low,
+           vs.snyk_total, vs.snyk_critical, vs.snyk_high, vs.snyk_upgrade,
+           vs.fetched_at AS vuln_fetched_at
     FROM stack_components sc
     LEFT JOIN projects p ON sc.project_id = p.id
     LEFT JOIN servers s2 ON sc.server_id = s2.id
+    LEFT JOIN vuln_status vs ON vs.product = sc.product AND vs.version = sc.current_version
     LEFT JOIN eol_status es ON sc.product = es.product
       AND es.cycle = (
         SELECT e2.cycle FROM eol_status e2
@@ -140,6 +145,29 @@ router.get('/sync/status', async (_req, res) => {
     'SELECT * FROM sync_log ORDER BY id DESC LIMIT 1'
   );
   res.json(last || { status: 'never' });
+});
+
+// ---------------------------------------------------------------------------
+// POST /api/vuln/check — Chequear vulnerabilidades de todo el stack
+// ---------------------------------------------------------------------------
+router.post('/vuln/check', async (_req, res) => {
+  try {
+    const results = await syncVulnerabilities();
+    res.json({ status: 'ok', checked: results.length, results });
+  } catch (err) {
+    console.error('[vuln/check] Error:', err.message);
+    res.status(500).json({ status: 'error', message: err.message });
+  }
+});
+
+// ---------------------------------------------------------------------------
+// GET /api/vuln — Todos los datos de vulnerabilidades almacenados
+// ---------------------------------------------------------------------------
+router.get('/vuln', async (_req, res) => {
+  const { rows } = await pool.query(
+    'SELECT * FROM vuln_status ORDER BY osv_count DESC, product'
+  );
+  res.json(rows);
 });
 
 // ---------------------------------------------------------------------------

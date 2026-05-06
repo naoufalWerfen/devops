@@ -3,6 +3,7 @@
  */
 const { pool } = require('./db');
 const { getEolInfo } = require('./endoflife');
+const { syncVulnerabilities } = require('./vulnerability');
 const config = require('../config/projects.json');
 
 async function syncServers() {
@@ -96,7 +97,10 @@ async function runFullSync() {
     console.log('[sync] Consultando endoflife.date...');
     const eol = await syncEol();
 
-    const details = { servers: servers.length, projects: projects.length, eol: eol.length };
+    console.log('[sync] Consultando vulnerabilidades (OSV.dev + Snyk)...');
+    const vulns = await syncVulnerabilities();
+
+    const details = { servers: servers.length, projects: projects.length, eol: eol.length, vulns: vulns.length };
     await pool.query(
       "UPDATE sync_log SET status='success', finished_at=NOW(), details=$2 WHERE id=$1",
       [log.id, JSON.stringify(details)]

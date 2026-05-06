@@ -17,6 +17,7 @@ services:
       - pgdata:/var/lib/postgresql/data
       - ./api/db/init.sql:/docker-entrypoint-initdb.d/01-init.sql
       - ./api/db/02-migration-import.sql:/docker-entrypoint-initdb.d/02-migration-import.sql
+      - ./api/db/03-migration-vuln.sql:/docker-entrypoint-initdb.d/03-migration-vuln.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U devops -d devops_dashboard"]
       interval: 5s
@@ -38,6 +39,8 @@ services:
       DB_PASSWORD_FILE: /run/secrets/db_password
       PORT: 3001
       ENDOFLIFE_API_URL: https://endoflife.date/api/v1
+      SNYK_TOKEN: ${SNYK_TOKEN:-}
+      SNYK_ORG_ID: ${SNYK_ORG_ID:-}
     secrets:
       - db_password
     ports:

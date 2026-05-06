@@ -50,6 +50,20 @@ function VersionCompare({ current, latest }) {
   );
 }
 
+function VulnBadge({ item }) {
+  const count = item.osv_count;
+  if (count == null) return <span className="vuln-badge vuln-badge--unknown">—</span>;
+  if (count === 0) return <span className="vuln-badge vuln-badge--safe">✓ Seguro</span>;
+  const parts = [];
+  if (item.osv_critical > 0) parts.push(`${item.osv_critical}C`);
+  if (item.osv_high > 0) parts.push(`${item.osv_high}H`);
+  if (item.osv_medium > 0) parts.push(`${item.osv_medium}M`);
+  if (item.osv_low > 0) parts.push(`${item.osv_low}L`);
+  const label = parts.length > 0 ? ` (${parts.join(' ')})` : '';
+  const severity = item.osv_critical > 0 ? 'critical' : item.osv_high > 0 ? 'high' : 'medium';
+  return <span className={`vuln-badge vuln-badge--${severity}`}>{count} vuln{count > 1 ? 's' : ''}{label}</span>;
+}
+
 /* ── Hook de ordenación ──────────────────────────────────────────────────── */
 
 function useSortableData(items) {
@@ -146,6 +160,7 @@ function StackTable({ stack, showProject }) {
             <SortableHeader label="Fecha release" sortKey="release_date" requestSort={requestSort} getSortIndicator={getSortIndicator} />
             <SortableHeader label="Fin EOL" sortKey="eol_date" requestSort={requestSort} getSortIndicator={getSortIndicator} />
             <SortableHeader label="Estado" sortKey="is_eol" requestSort={requestSort} getSortIndicator={getSortIndicator} />
+            <SortableHeader label="Vulns (OSV)" sortKey="osv_count" requestSort={requestSort} getSortIndicator={getSortIndicator} />
           </tr>
         </thead>
         <tbody>
@@ -165,6 +180,7 @@ function StackTable({ stack, showProject }) {
                 <td>{formatDate(item.release_date)}</td>
                 <EolDateCell item={item} />
                 <td><StatusBadge item={item} /></td>
+                <td><VulnBadge item={item} /></td>
               </tr>
             );
           })}
@@ -174,8 +190,9 @@ function StackTable({ stack, showProject }) {
   );
 }
 
-function SyncButton({ onSync, lastSync }) {
+function SyncButton({ onSync, onVulnCheck, lastSync }) {
   const [loading, setLoading] = useState(false);
+  const [vulnLoading, setVulnLoading] = useState(false);
   const handleSync = async () => {
     setLoading(true);
     try {
@@ -184,14 +201,30 @@ function SyncButton({ onSync, lastSync }) {
       setLoading(false);
     }
   };
+  const handleVulnCheck = async () => {
+    setVulnLoading(true);
+    try {
+      await onVulnCheck();
+    } finally {
+      setVulnLoading(false);
+    }
+  };
   return (
     <div className="sync-bar">
       <button
         className="button button--primary button--sm"
         onClick={handleSync}
-        disabled={loading}
+        disabled={loading || vulnLoading}
       >
         {loading ? '⏳ Sincronizando...' : '🔄 Sincronizar con endoflife.date'}
+      </button>
+      <button
+        className="button button--warning button--sm"
+        onClick={handleVulnCheck}
+        disabled={loading || vulnLoading}
+        style={{ marginLeft: '0.5rem' }}
+      >
+        {vulnLoading ? '⏳ Chequeando...' : '🛡️ Chequear vulnerabilidades'}
       </button>
       {lastSync && lastSync.status !== 'never' && (
         <span className="sync-info">
@@ -242,11 +275,21 @@ export default function StackStatus() {
     }
   };
 
+  const handleVulnCheck = async () => {
+    try {
+      await fetch(`${API_BASE}/vuln/check`, { method: 'POST' });
+      await fetchData();
+    } catch (err) {
+      setError('Error al chequear vulnerabilidades: ' + err.message);
+    }
+  };
+
   // Stats
   const eolCount = stack.filter((s) => s.is_eol).length;
   const eoasCount = stack.filter((s) => s.is_eoas && !s.is_eol).length;
   const okCount = stack.filter((s) => !s.is_eol && !s.is_eoas).length;
   const ltsCount = stack.filter((s) => s.is_lts).length;
+  const vulnCount = stack.filter((s) => s.osv_count > 0).length;
 
   // Group by project
   const byProject = stack.reduce((acc, item) => {
@@ -283,6 +326,10 @@ export default function StackStatus() {
               <div className="stat-number" style={{color: '#fff'}}>{servers.length}</div>
               <div className="stat-label" style={{color: 'rgba(255,255,255,0.7)'}}>Servidores</div>
             </div>
+            <div className="stat-item">
+              <div className="stat-number" style={{color: '#f97316'}}>{vulnCount}</div>
+              <div className="stat-label" style={{color: 'rgba(255,255,255,0.7)'}}>Con vulns</div>
+            </div>
           </div>
         </div>
       </header>
@@ -295,7 +342,7 @@ export default function StackStatus() {
           </div>
         )}
 
-        <SyncButton onSync={handleSync} lastSync={syncStatus} />
+        <SyncButton onSync={handleSync} onVulnCheck={handleVulnCheck} lastSync={syncStatus} />
 
         {loading ? (
           <p style={{textAlign: 'center', padding: '3rem'}}>Cargando datos...</p>
