@@ -77,8 +77,12 @@ show_menu() {
   echo -e "${BOLD}╚══════════════════════════════════════════════════════════╝${NC}"
   echo ""
   for i in "${!SERVERS[@]}"; do
-    IFS='|' read -r name ip env <<< "${SERVERS[$i]}"
-    printf "  ${CYAN}%d)${NC}  %-28s  ${YELLOW}%s${NC}  [%s]\n" "$((i+1))" "$name" "$ip" "$env"
+    IFS='|' read -r name ip env pem <<< "${SERVERS[$i]}"
+    local auth_info=""
+    if [ -n "$pem" ]; then
+      auth_info="  ${GREEN}[PEM]${NC}"
+    fi
+    printf "  ${CYAN}%d)${NC}  %-28s  ${YELLOW}%s${NC}  [%s]%b\n" "$((i+1))" "$name" "$ip" "$env" "$auth_info"
   done
   echo ""
   echo -e "  ${CYAN}A)${NC}  Todos los servidores"
@@ -88,9 +92,10 @@ show_menu() {
 
 
 run_audit() {
-  local name="$1" ip="$2" env="$3"
+  local name="$1" ip="$2" env="$3" pem_path="${4:-}"
   local output_file="${OUTPUT_DIR}/${name}.json"
   local remote_json="/tmp/${name}.json"
+  local use_pem=false
 
   echo ""
   echo -e "${BOLD}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
@@ -102,42 +107,107 @@ run_audit() {
     error "El usuario no puede estar vacío"
     return 1
   fi
-  read -rsp "  Contraseña: " SSH_PASS < /dev/tty
-  echo ""
-  if [ -z "$SSH_PASS" ]; then
-    error "La contraseña no puede estar vacía"
-    return 1
+
+  # Determinar método de autenticación
+  if [ -n "$pem_path" ]; then
+    # PEM preconfigurado en servers.conf
+    if [ ! -f "$pem_path" ]; then
+      error "Fichero PEM no encontrado: ${pem_path}"
+      return 1
+    fi
+    use_pem=true
+    info "Usando certificado PEM: ${pem_path}"
+  else
+    # Preguntar método de autenticación
+    echo ""
+    echo -e "  Método de autenticación:"
+    echo -e "    ${CYAN}1)${NC} Contraseña"
+    echo -e "    ${CYAN}2)${NC} Certificado PEM"
+    read -rp "  Selección [1]: " auth_choice < /dev/tty
+    auth_choice=${auth_choice:-1}
+
+    if [ "$auth_choice" = "2" ]; then
+      read -rp "  Ruta al fichero PEM: " pem_path < /dev/tty
+      if [ -z "$pem_path" ]; then
+        error "La ruta al fichero PEM no puede estar vacía"
+        return 1
+      fi
+      # Expandir ~ si se usa
+      pem_path="${pem_path/#\~/$HOME}"
+      if [ ! -f "$pem_path" ]; then
+        error "Fichero PEM no encontrado: ${pem_path}"
+        return 1
+      fi
+      use_pem=true
+      info "Usando certificado PEM: ${pem_path}"
+    fi
   fi
-  export SSHPASS="$SSH_PASS"
+
+  if [ "$use_pem" = false ]; then
+    read -rsp "  Contraseña: " SSH_PASS < /dev/tty
+    echo ""
+    if [ -z "$SSH_PASS" ]; then
+      error "La contraseña no puede estar vacía"
+      return 1
+    fi
+    export SSHPASS="$SSH_PASS"
+  fi
 
   # 1. Subir el script de auditoría
   info "Subiendo server-audit.sh..."
-  if ! sshpass -e scp $SSH_OPTS "$AUDIT_SCRIPT" "${SSH_USER}@${ip}:${REMOTE_TMP}" 2>/dev/null; then
-    error "No se pudo conectar a ${ip}. Verifica IP/credenciales."
-    return 1
+  if [ "$use_pem" = true ]; then
+    if ! scp -i "$pem_path" $SSH_OPTS "$AUDIT_SCRIPT" "${SSH_USER}@${ip}:${REMOTE_TMP}" 2>/dev/null; then
+      error "No se pudo conectar a ${ip}. Verifica IP/certificado PEM."
+      return 1
+    fi
+  else
+    if ! sshpass -e scp $SSH_OPTS "$AUDIT_SCRIPT" "${SSH_USER}@${ip}:${REMOTE_TMP}" 2>/dev/null; then
+      error "No se pudo conectar a ${ip}. Verifica IP/credenciales."
+      return 1
+    fi
   fi
   ok "Script subido"
 
   # 2. Ejecutar en remoto
   info "Ejecutando auditoría (puede tardar unos segundos)..."
-  if ! sshpass -e ssh $SSH_OPTS "${SSH_USER}@${ip}" \
-    "bash ${REMOTE_TMP} -n '${name}' -e '${env}' -o '${remote_json}'" 2>/dev/null; then
-    error "Error ejecutando la auditoría en ${name}"
-    return 1
+  if [ "$use_pem" = true ]; then
+    if ! ssh -i "$pem_path" $SSH_OPTS "${SSH_USER}@${ip}" \
+      "bash ${REMOTE_TMP} -n '${name}' -e '${env}' -o '${remote_json}'" 2>/dev/null; then
+      error "Error ejecutando la auditoría en ${name}"
+      return 1
+    fi
+  else
+    if ! sshpass -e ssh $SSH_OPTS "${SSH_USER}@${ip}" \
+      "bash ${REMOTE_TMP} -n '${name}' -e '${env}' -o '${remote_json}'" 2>/dev/null; then
+      error "Error ejecutando la auditoría en ${name}"
+      return 1
+    fi
   fi
   ok "Auditoría completada"
 
   # 3. Descargar el JSON
   info "Descargando ${name}.json..."
-  if ! sshpass -e scp $SSH_OPTS "${SSH_USER}@${ip}:${remote_json}" "$output_file" 2>/dev/null; then
-    error "No se pudo descargar el fichero"
-    return 1
+  if [ "$use_pem" = true ]; then
+    if ! scp -i "$pem_path" $SSH_OPTS "${SSH_USER}@${ip}:${remote_json}" "$output_file" 2>/dev/null; then
+      error "No se pudo descargar el fichero"
+      return 1
+    fi
+  else
+    if ! sshpass -e scp $SSH_OPTS "${SSH_USER}@${ip}:${remote_json}" "$output_file" 2>/dev/null; then
+      error "No se pudo descargar el fichero"
+      return 1
+    fi
   fi
   ok "Guardado en: ${output_file}"
 
   # 4. Limpiar ficheros remotos
-  sshpass -e ssh $SSH_OPTS "${SSH_USER}@${ip}" \
-    "rm -f '${REMOTE_TMP}' '${remote_json}'" 2>/dev/null || true
+  if [ "$use_pem" = true ]; then
+    ssh -i "$pem_path" $SSH_OPTS "${SSH_USER}@${ip}" \
+      "rm -f '${REMOTE_TMP}' '${remote_json}'" 2>/dev/null || true
+  else
+    sshpass -e ssh $SSH_OPTS "${SSH_USER}@${ip}" \
+      "rm -f '${REMOTE_TMP}' '${remote_json}'" 2>/dev/null || true
+  fi
 
   # 5. Resumen rápido
   if command -v python3 &>/dev/null; then
@@ -213,8 +283,8 @@ main() {
   local failed_names=()
 
   for idx in "${AUDIT_INDICES[@]}"; do
-    IFS='|' read -r name ip env <<< "${SERVERS[$idx]}"
-    if run_audit "$name" "$ip" "$env"; then
+    IFS='|' read -r name ip env pem <<< "${SERVERS[$idx]}"
+    if run_audit "$name" "$ip" "$env" "$pem"; then
       ((success++))
     else
       ((failed++))

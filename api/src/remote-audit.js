@@ -4,13 +4,57 @@
  * SEGURIDAD: Las credenciales (usuario/contraseña) NUNCA se almacenan.
  * Solo se usan en memoria durante la conexión SSH y se descartan al terminar.
  */
-const { Client } = require('ssh2');
+const { Client, utils: { parseKey } } = require('ssh2');
+const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { importAudit } = require('./import');
 
 const AUDIT_SCRIPT_PATH = '/data/server-audit.sh';
 const REMOTE_SCRIPT     = '/tmp/server-audit.sh';
+
+/**
+ * Convierte una clave privada PPK (PuTTY v2/v3) a formato OpenSSH PEM.
+ * Si ya está en formato PEM/OpenSSH, la devuelve tal cual.
+ */
+function convertToOpenSSH(keyData) {
+  // Si ya es PEM / OpenSSH, devolver directamente
+  if (keyData.includes('-----BEGIN') && keyData.includes('PRIVATE KEY')) {
+    return keyData;
+  }
+
+  // Detectar formato PPK (v2 o v3)
+  if (!keyData.includes('PuTTY-User-Key-File-')) {
+    throw new Error('Formato de clave no reconocido. Usa OpenSSH PEM (.pem) o PuTTY PPK (.ppk).');
+  }
+
+  // Intentar parseKey nativo primero (soporta PPK v2)
+  const parsed = parseKey(keyData);
+  if (!(parsed instanceof Error)) {
+    return keyData; // ssh2 lo soporta directamente
+  }
+
+  // PPK v3: convertir con puttygen
+  const tmpId = crypto.randomBytes(8).toString('hex');
+  const tmpPpk = `/tmp/key-${tmpId}.ppk`;
+  const tmpPem = `/tmp/key-${tmpId}.pem`;
+
+  try {
+    fs.writeFileSync(tmpPpk, keyData, { mode: 0o600 });
+    execSync(`puttygen ${tmpPpk} -O private-openssh -o ${tmpPem}`, {
+      timeout: 5000,
+      stdio: 'pipe',
+    });
+    const pemData = fs.readFileSync(tmpPem, 'utf8');
+    return pemData;
+  } catch (err) {
+    throw new Error(`Error convirtiendo clave PPK a OpenSSH: ${err.message}`);
+  } finally {
+    try { fs.unlinkSync(tmpPpk); } catch {}
+    try { fs.unlinkSync(tmpPem); } catch {}
+  }
+}
 
 /**
  * Ejecuta la auditoría completa en un servidor remoto:
@@ -23,13 +67,14 @@ const REMOTE_SCRIPT     = '/tmp/server-audit.sh';
  * @param {object} params
  * @param {string} params.host       - IP o hostname del servidor
  * @param {string} params.username   - Usuario SSH (NO se guarda)
- * @param {string} params.password   - Contraseña SSH (NO se guarda)
+ * @param {string} [params.password]   - Contraseña SSH (NO se guarda)
+ * @param {string} [params.privateKey] - Clave privada PEM (contenido, NO se guarda)
  * @param {string} params.serverName - Nombre lógico del servidor
  * @param {string} params.environment - Entorno: test, demo, prod, staging
  * @param {function} [params.onProgress] - Callback de progreso (step, message)
  * @returns {Promise<object>} Resultado de la importación
  */
-async function runRemoteAudit({ host, username, password, serverName, environment, onProgress }) {
+async function runRemoteAudit({ host, username, password, privateKey, serverName, environment, onProgress }) {
   const progress = onProgress || (() => {});
   const remoteJson = `/tmp/${serverName}.json`;
 
@@ -61,11 +106,21 @@ async function runRemoteAudit({ host, username, password, serverName, environmen
       conn.on('close', () => {
         console.log(`[audit] SSH conexión cerrada (${host})`);
       });
+      // Preparar autenticación
+      const authOpts = {};
+      if (privateKey) {
+        // Soporta PEM (OpenSSH) y PPK (PuTTY v2/v3) — convierte si es necesario
+        const opensshKey = convertToOpenSSH(privateKey);
+        authOpts.privateKey = opensshKey;
+      } else {
+        authOpts.password = password;
+      }
+
       conn.connect({
         host,
         port: 22,
         username,
-        password,
+        ...authOpts,
         readyTimeout: 8000,
         hostVerifier: () => true,
         algorithms: {

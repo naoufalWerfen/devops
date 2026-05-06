@@ -18,12 +18,27 @@ function AuditForm({ onResult, onRunning }) {
   const [environment, setEnvironment] = useState('test');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [authType, setAuthType] = useState('password');
+  const [privateKey, setPrivateKey] = useState('');
+  const [pemFileName, setPemFileName] = useState('');
   const [running, setRunning] = useState(false);
   const [steps, setSteps] = useState([]);
 
+  const handlePemFile = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setPemFileName(file.name);
+    const reader = new FileReader();
+    reader.onload = (ev) => setPrivateKey(ev.target.result);
+    reader.readAsText(file);
+  };
+
+  const isFormValid = host && serverName && username &&
+    (authType === 'password' ? password : privateKey);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!host || !serverName || !username || !password) return;
+    if (!isFormValid) return;
 
     setRunning(true);
     const initialSteps = [
@@ -48,17 +63,25 @@ function AuditForm({ onResult, onRunning }) {
 
     try {
       console.log('[audit] Enviando petición a:', `${API_BASE}/audit/remote`);
+      const body = { host, username, serverName, environment };
+      if (authType === 'password') {
+        body.password = password;
+      } else {
+        body.privateKey = privateKey;
+      }
       const res = await fetch(`${API_BASE}/audit/remote`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ host, username, password, serverName, environment }),
+        body: JSON.stringify(body),
       });
       console.log('[audit] Respuesta recibida:', res.status);
       const data = await res.json();
 
-      // Limpiar timers y contraseña
+      // Limpiar timers y credenciales
       timers.forEach(clearTimeout);
       setPassword('');
+      setPrivateKey('');
+      setPemFileName('');
 
       if (data.steps) setSteps(data.steps);
       if (data.status === 'ok') {
@@ -69,6 +92,8 @@ function AuditForm({ onResult, onRunning }) {
       console.error('[audit] Error fetch:', err);
       timers.forEach(clearTimeout);
       setPassword('');
+      setPrivateKey('');
+      setPemFileName('');
       setSteps((prev) => [...prev, { step: 'error', message: err.message, time: new Date().toISOString() }]);
       onResult({ status: 'error', message: err.message });
     } finally {
@@ -135,23 +160,52 @@ function AuditForm({ onResult, onRunning }) {
             />
           </div>
           <div className="audit-form__field">
-            <label>Contraseña</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required
-              disabled={running}
-              autoComplete="off"
-            />
+            <label>Autenticación</label>
+            <select value={authType} onChange={(e) => setAuthType(e.target.value)} disabled={running}>
+              <option value="password">Contraseña</option>
+              <option value="pem">Certificado PEM</option>
+            </select>
           </div>
         </div>
+        {authType === 'password' ? (
+          <div className="audit-form__grid">
+            <div className="audit-form__field">
+              <label>Contraseña</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+                disabled={running}
+                autoComplete="off"
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="audit-form__grid">
+            <div className="audit-form__field" style={{ gridColumn: '1 / -1' }}>
+              <label>Fichero PEM / PPK (.pem, .ppk, .key)</label>
+              <input
+                type="file"
+                accept=".pem,.key,.ppk"
+                onChange={handlePemFile}
+                disabled={running}
+                style={{ padding: '0.5rem' }}
+              />
+              {pemFileName && (
+                <small style={{ color: 'var(--ifm-color-success)', marginTop: '0.25rem', display: 'block' }}>
+                  ✔ {pemFileName} cargado
+                </small>
+              )}
+            </div>
+          </div>
+        )}
 
         <button
           type="submit"
           className="button button--primary button--lg audit-form__submit"
-          disabled={running || !host || !serverName || !username || !password}
+          disabled={running || !isFormValid}
         >
           {running ? '⏳ Ejecutando auditoría...' : '🚀 Ejecutar auditoría remota'}
         </button>

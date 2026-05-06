@@ -210,17 +210,24 @@ router.get('/imports', async (_req, res) => {
 
 // ---------------------------------------------------------------------------
 // POST /api/audit/remote — Ejecutar auditoría remota por SSH
-//   Body: { host, username, password, serverName, environment }
-//   SEGURIDAD: username/password solo se usan en memoria, NUNCA se almacenan
+//   Body: { host, username, password?, privateKey?, serverName, environment }
+//   Autenticación: contraseña O certificado PEM (privateKey)
+//   SEGURIDAD: credenciales solo se usan en memoria, NUNCA se almacenan
 // ---------------------------------------------------------------------------
 router.post('/audit/remote', async (req, res) => {
-  const { host, username, password, serverName, environment } = req.body;
+  const { host, username, password, privateKey, serverName, environment } = req.body;
 
   // Validaciones
-  if (!host || !username || !password) {
+  if (!host || !username) {
     return res.status(400).json({
       status: 'error',
-      message: 'Se requieren host, username y password',
+      message: 'Se requieren host y username',
+    });
+  }
+  if (!password && !privateKey) {
+    return res.status(400).json({
+      status: 'error',
+      message: 'Se requiere password o privateKey (certificado PEM)',
     });
   }
   if (!serverName) {
@@ -251,6 +258,7 @@ router.post('/audit/remote', async (req, res) => {
       host,
       username,
       password,       // solo en memoria, se descarta al terminar
+      privateKey,     // solo en memoria, se descarta al terminar
       serverName,
       environment,
       onProgress: (step, message) => {
