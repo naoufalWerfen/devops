@@ -64,7 +64,7 @@ const config = {
         },
         items: [
           {
-            to: '/stack',
+            to: '/',
             position: 'left',
             label: '📊 Stack & Servidores',
           },
@@ -78,29 +78,30 @@ const config = {
             position: 'left',
             label: '🔍 Auditoría Remota',
           },
-          {
-            type: 'docSidebar',
-            sidebarId: 'distributorsPortalSidebar',
-            position: 'left',
-            label: '📦 Distributors Portal',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'accrivaTicketsSidebar',
-            position: 'left',
-            label: '🎫 Accriva Tickets',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'myOrdersSidebar',
-            position: 'left',
-            label: '🛒 MyOrders',
-          },
-          {
-            href: 'https://github.com/Werfen-D-A',
-            label: 'GitHub',
-            position: 'right',
-          },
+          // --- Ocultos temporalmente (posible eliminación futura) ---
+          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'distributorsPortalSidebar',
+          //   position: 'left',
+          //   label: '📦 Distributors Portal',
+          // },
+          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'accrivaTicketsSidebar',
+          //   position: 'left',
+          //   label: '🎫 Accriva Tickets',
+          // },
+          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'myOrdersSidebar',
+          //   position: 'left',
+          //   label: '🛒 MyOrders',
+          // },
+          // {
+          //   href: 'https://github.com/Werfen-D-A',
+          //   label: 'GitHub',
+          //   position: 'right',
+          // },
         ],
       },
       footer: {

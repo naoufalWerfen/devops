@@ -4,6 +4,7 @@ const { runFullSync } = require('./sync');
 const { validateAudit, importAudit } = require('./import');
 const { runRemoteAudit } = require('./remote-audit');
 const { syncVulnerabilities, checkVulnerabilities } = require('./vulnerability');
+const { processChat } = require('./chat');
 
 const router = express.Router();
 
@@ -299,6 +300,39 @@ router.post('/audit/remote', async (req, res) => {
   } catch (err) {
     console.error('[audit/remote] Error:', err.message);
     res.json({ status: 'error', message: err.message });
+  }
+});
+
+// ---------------------------------------------------------------------------
+// POST /api/chat — Asistente virtual DevOps (OpenAI)
+//   Body: { messages: [{ role: 'user'|'assistant', content: string }] }
+// ---------------------------------------------------------------------------
+router.post('/chat', async (req, res) => {
+  const { messages } = req.body;
+  if (!Array.isArray(messages) || messages.length === 0) {
+    return res.status(400).json({ error: 'Se requiere un array de messages' });
+  }
+
+  // Validar que solo contenga roles permitidos
+  const allowedRoles = new Set(['user', 'assistant']);
+  for (const msg of messages) {
+    if (!allowedRoles.has(msg.role) || typeof msg.content !== 'string') {
+      return res.status(400).json({ error: 'Cada mensaje debe tener role (user|assistant) y content (string)' });
+    }
+  }
+
+  // Limitar historial a los últimos 20 mensajes
+  const trimmed = messages.slice(-20);
+
+  try {
+    const { reply, traces } = await processChat(trimmed);
+    res.json({ reply, traces });
+  } catch (err) {
+    console.error('[chat] Error:', err.message);
+    if (err.message.includes('OPENAI_API_KEY')) {
+      return res.status(503).json({ error: 'El asistente no está configurado. Falta OPENAI_API_KEY.' });
+    }
+    res.status(500).json({ error: 'Error procesando el mensaje.' });
   }
 });
 
