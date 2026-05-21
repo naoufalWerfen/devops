@@ -88,14 +88,27 @@ function ServerCard({server}) {
             <h3>{server.name}</h3>
             <span className="server-ip">{server.ip}</span>
           </div>
-          <span style={{
+          <span className={`status-badge status-badge--${server.status}`} style={{
             background: statusColors[server.status],
             color: '#fff',
             padding: '2px 10px',
             borderRadius: '12px',
             fontSize: '0.72rem',
             fontWeight: 700,
-          }}>{server.statusText}</span>
+            display: 'flex',
+            alignItems: 'center',
+            gap: '5px',
+          }}>
+            <span className="status-dot" style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              background: '#fff',
+              display: 'inline-block',
+              animation: server.status === 'critical' ? 'pulse 1.5s ease-in-out infinite' : 'none',
+            }}></span>
+            {server.statusText}
+          </span>
         </div>
       </div>
       <div className="server-card__body">
@@ -151,6 +164,32 @@ export default function Home() {
       {/* Hero */}
       <header className="hero--werfen">
         <div className="container">
+          <div style={{display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.5rem'}}>
+            <span className="live-indicator" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '3px 10px',
+              borderRadius: '20px',
+              background: 'rgba(34, 197, 94, 0.15)',
+              border: '1px solid rgba(34, 197, 94, 0.3)',
+              fontSize: '0.7rem',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              color: '#4ADE80',
+            }}>
+              <span style={{
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                background: '#22C55E',
+                animation: 'pulse 2s ease-in-out infinite',
+                boxShadow: '0 0 6px rgba(34, 197, 94, 0.6)',
+              }}></span>
+              Live
+            </span>
+          </div>
           <Heading as="h1">Werfen DevOps</Heading>
           <p>
             Dashboard centralizado — estado de servidores, alertas de seguridad
