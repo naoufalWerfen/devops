@@ -5,6 +5,7 @@ const { validateAudit, importAudit } = require('./import');
 const { runRemoteAudit } = require('./remote-audit');
 const { syncVulnerabilities, checkVulnerabilities } = require('./vulnerability');
 const { processChat } = require('./chat');
+const jenkins = require('./jenkins');
 
 const router = express.Router();
 
@@ -333,6 +334,90 @@ router.post('/chat', async (req, res) => {
       return res.status(503).json({ error: 'El asistente no está configurado. Falta OPENAI_API_KEY.' });
     }
     res.status(500).json({ error: 'Error procesando el mensaje.' });
+  }
+});
+
+// ---------------------------------------------------------------------------
+// Jenkins Transports
+// ---------------------------------------------------------------------------
+
+// GET /api/jenkins/projects — Lista proyectos Jenkins con conteo de jobs
+router.get('/jenkins/projects', async (_req, res) => {
+  try {
+    const rows = await jenkins.getProjects();
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/jenkins/jobs?project=xxx — Lista jobs (filtro opcional por proyecto)
+router.get('/jenkins/jobs', async (req, res) => {
+  try {
+    const rows = await jenkins.getJobs(req.query.project || null);
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/jenkins/jobs/:id/status — Estado en tiempo real de un job
+router.get('/jenkins/jobs/:id/status', async (req, res) => {
+  try {
+    const { rows: [job] } = await pool.query(
+      'SELECT job_path FROM jenkins_jobs WHERE id = $1', [req.params.id]
+    );
+    if (!job) return res.status(404).json({ error: 'Job no encontrado' });
+    const status = await jenkins.getJobStatus(job.job_path);
+    res.json(status);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/jenkins/jobs/:id/builds — Historial de builds en tiempo real
+router.get('/jenkins/jobs/:id/builds', async (req, res) => {
+  try {
+    const { rows: [job] } = await pool.query(
+      'SELECT job_path FROM jenkins_jobs WHERE id = $1', [req.params.id]
+    );
+    if (!job) return res.status(404).json({ error: 'Job no encontrado' });
+    const limit = Math.min(parseInt(req.query.limit || '10', 10), 50);
+    const builds = await jenkins.getBuildHistory(job.job_path, limit);
+    res.json(builds);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/jenkins/project/:name/status — Estado de todos los jobs de un proyecto
+router.get('/jenkins/project/:name/status', async (req, res) => {
+  try {
+    const results = await jenkins.getProjectStatus(req.params.name);
+    res.json(results);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /api/jenkins/jobs/:id/trigger — Triggear un build (SOLO desde dashboard)
+router.post('/jenkins/jobs/:id/trigger', async (req, res) => {
+  try {
+    const result = await jenkins.triggerBuild(parseInt(req.params.id, 10));
+    res.json(result);
+  } catch (err) {
+    console.error('[jenkins/trigger] Error:', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/jenkins/tokens — Metadatos de tokens (NUNCA valores)
+router.get('/jenkins/tokens', async (_req, res) => {
+  try {
+    const rows = await jenkins.getTokens();
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 

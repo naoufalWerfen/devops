@@ -78,6 +78,11 @@ const config = {
             position: 'left',
             label: '🔍 Auditoría Remota',
           },
+          {
+            to: '/jenkins',
+            position: 'left',
+            label: '🔧 Jenkins',
+          },
           // --- Ocultos temporalmente (posible eliminación futura) ---
           // {
           //   type: 'docSidebar',
