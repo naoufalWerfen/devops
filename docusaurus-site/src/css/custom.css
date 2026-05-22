@@ -2040,3 +2040,498 @@ html {
 [data-theme='dark'] .jenkins-tokens-table th { background: rgba(30, 41, 59, 0.6); }
 [data-theme='dark'] .jenkins-toast--success { background: rgba(22, 101, 52, 0.9); color: #dcfce7; }
 [data-theme='dark'] .jenkins-toast--error { background: rgba(153, 27, 27, 0.9); color: #fee2e2; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Invicti AppSec Dashboard
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.invicti-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+
+.invicti-header {
+  margin-bottom: 1.5rem;
+}
+.invicti-header h1 { margin-bottom: 0.25rem; }
+.invicti-subtitle {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.invicti-loading-msg {
+  text-align: center;
+  padding: 4rem 0;
+  font-size: 1.1rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+/* ── Not Configured ─────────────────────────────────────────────────── */
+
+.invicti-not-configured {
+  text-align: center;
+  padding: 3rem;
+  border: 2px dashed var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+.invicti-not-configured h2 { margin-bottom: 1rem; }
+
+/* ── Tabs ───────────────────────────────────────────────────────────── */
+
+.invicti-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--ifm-color-emphasis-200);
+  padding-bottom: 0.5rem;
+}
+
+.invicti-tab {
+  padding: 0.5rem 1rem;
+  border: 1.5px solid transparent;
+  border-radius: 8px 8px 0 0;
+  background: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ifm-color-emphasis-600);
+  transition: all 0.2s;
+}
+.invicti-tab:hover {
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-primary);
+}
+.invicti-tab--active {
+  border-color: var(--ifm-color-primary);
+  border-bottom-color: var(--ifm-background-color, #fff);
+  background: var(--ifm-background-color, #fff);
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+/* ── Summary Cards ──────────────────────────────────────────────────── */
+
+.invicti-summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.invicti-card {
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--ifm-color-emphasis-200);
+  background: var(--glass-bg);
+  text-align: center;
+  transition: var(--transition-fast);
+}
+.invicti-card:hover {
+  box-shadow: var(--shadow-md);
+}
+.invicti-card__value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.invicti-card__label {
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-top: 0.25rem;
+}
+
+/* ── Section ────────────────────────────────────────────────────────── */
+
+.invicti-section { margin-bottom: 2rem; }
+.invicti-section h2 { margin-bottom: 0.75rem; }
+
+/* ── Filters ────────────────────────────────────────────────────────── */
+
+.invicti-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+.invicti-filters select {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1.5px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-color, #fff);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* ── Table ──────────────────────────────────────────────────────────── */
+
+.invicti-table-wrap {
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: var(--shadow-sm);
+}
+
+.invicti-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.invicti-table th {
+  background: var(--ifm-color-emphasis-100);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ifm-color-emphasis-700);
+  white-space: nowrap;
+}
+.invicti-table td {
+  padding: 0.55rem 0.75rem;
+  border-top: 1px solid var(--ifm-color-emphasis-100);
+  vertical-align: middle;
+}
+.invicti-table tbody tr:hover {
+  background: var(--ifm-color-emphasis-50, rgba(0,0,0,0.02));
+}
+
+/* ── Buttons ────────────────────────────────────────────────────────── */
+
+.invicti-btn {
+  padding: 0.4rem 0.75rem;
+  border: 1.5px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  background: var(--glass-bg);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  white-space: nowrap;
+}
+.invicti-btn:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: var(--shadow-sm);
+}
+.invicti-btn--sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+.invicti-btn--scan {
+  padding: 0.5rem 1rem;
+  background: var(--ifm-color-primary);
+  color: #fff;
+  border-color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+.invicti-btn--scan:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.invicti-btn--scan:not(:disabled):hover {
+  opacity: 0.9;
+  box-shadow: var(--shadow-md);
+}
+.invicti-btn--syncing {
+  animation: invicti-pulse 1.5s infinite;
+}
+@keyframes invicti-pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* ── Actionable Dashboard ───────────────────────────────────────────── */
+
+.invicti-dashboard { padding: 0 1rem; }
+
+.invicti-kpi-strip {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.invicti-kpi {
+  background: var(--ifm-background-surface-color, #fff);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 10px;
+  padding: 0.75rem 1.25rem;
+  min-width: 100px;
+  text-align: center;
+}
+.invicti-kpi--danger {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+.invicti-kpi__value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.invicti-kpi__label {
+  font-size: 0.75rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-top: 0.25rem;
+}
+
+.invicti-dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 900px) {
+  .invicti-dash-grid { grid-template-columns: 1fr; }
+}
+
+.invicti-dash-panel {
+  background: var(--ifm-background-surface-color, #fff);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+.invicti-dash-panel h3 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+}
+
+.invicti-empty-msg {
+  color: var(--ifm-color-emphasis-500);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Priority list */
+.invicti-priority-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.invicti-priority-item {
+  border-left: 4px solid var(--ifm-color-emphasis-300);
+  padding: 0.75rem 1rem;
+  border-radius: 0 8px 8px 0;
+  background: var(--ifm-background-color);
+}
+.invicti-priority-item--critical { border-left-color: #dc2626; background: rgba(220, 38, 38, 0.04); }
+.invicti-priority-item--high { border-left-color: #ea580c; background: rgba(234, 88, 12, 0.04); }
+.invicti-priority-item__header { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.invicti-priority-item__meta {
+  display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;
+  font-size: 0.8rem; color: var(--ifm-color-emphasis-600); margin-top: 0.3rem;
+}
+.invicti-priority-item__url {
+  display: flex; align-items: center; gap: 0.25rem; margin-top: 0.3rem;
+}
+.invicti-priority-item__url code {
+  font-size: 0.75rem; word-break: break-all; color: var(--ifm-color-emphasis-700);
+}
+.invicti-priority-item__actions { display: flex; gap: 0.25rem; margin-top: 0.5rem; }
+
+.invicti-cvss-badge {
+  background: #dc2626; color: #fff; font-size: 0.72rem; font-weight: 700;
+  padding: 0.15rem 0.5rem; border-radius: 4px;
+}
+
+/* Assets at risk */
+.invicti-risk-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.invicti-risk-item {
+  padding: 0.75rem; border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px; background: var(--ifm-background-color);
+}
+.invicti-risk-item__header { display: flex; justify-content: space-between; align-items: center; }
+.invicti-risk-item__type {
+  font-size: 0.72rem; text-transform: uppercase; font-weight: 600;
+  background: var(--ifm-color-emphasis-100); padding: 0.1rem 0.4rem; border-radius: 3px;
+}
+.invicti-risk-item__url { margin-top: 0.25rem; display: flex; align-items: center; gap: 0.25rem; }
+.invicti-risk-item__url code { font-size: 0.75rem; word-break: break-all; color: var(--ifm-color-emphasis-600); }
+.invicti-risk-item__bars { display: flex; gap: 0.4rem; align-items: center; margin-top: 0.4rem; flex-wrap: wrap; }
+
+.invicti-sev-pill { font-size: 0.72rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 10px; color: #fff; }
+.invicti-sev-pill--critical { background: #dc2626; }
+.invicti-sev-pill--high { background: #ea580c; }
+.invicti-sev-pill--medium { background: #d97706; }
+
+/* CWE bars */
+.invicti-cwe-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.invicti-cwe-item { display: flex; align-items: center; gap: 0.5rem; }
+.invicti-cwe-link {
+  font-size: 0.8rem; font-weight: 600; min-width: 70px;
+  color: var(--ifm-color-primary); text-decoration: none;
+}
+.invicti-cwe-link:hover { text-decoration: underline; }
+.invicti-cwe-bar { flex: 1; height: 8px; background: var(--ifm-color-emphasis-100); border-radius: 4px; overflow: hidden; }
+.invicti-cwe-bar__fill { height: 100%; background: var(--ifm-color-primary); border-radius: 4px; transition: width 0.5s ease; }
+.invicti-cwe-count { font-size: 0.8rem; font-weight: 700; min-width: 24px; text-align: right; }
+
+/* Compact table variant */
+.invicti-table--compact { font-size: 0.85rem; }
+.invicti-table--compact th, .invicti-table--compact td { padding: 0.4rem 0.6rem; }
+
+/* Icon button */
+.invicti-btn-icon {
+  background: none; border: none; cursor: pointer; font-size: 0.85rem;
+  padding: 0.1rem 0.25rem; border-radius: 3px; opacity: 0.6;
+}
+.invicti-btn-icon:hover { opacity: 1; background: var(--ifm-color-emphasis-100); }
+
+/* Row highlights */
+.invicti-row--critical { background: rgba(220, 38, 38, 0.04) !important; }
+.invicti-row--high { background: rgba(234, 88, 12, 0.03) !important; }
+
+/* Search input */
+.invicti-search-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  min-width: 280px;
+  background: var(--ifm-background-color);
+  color: inherit;
+}
+.invicti-search-input:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 2px rgba(6, 3, 141, 0.15);
+}
+
+/* Dark mode additions */
+[data-theme='dark'] .invicti-kpi { border-color: rgba(255,255,255,0.1); background: rgba(30,41,59,0.4); }
+[data-theme='dark'] .invicti-kpi--danger { background: rgba(220,38,38,0.15); border-color: rgba(220,38,38,0.3); }
+[data-theme='dark'] .invicti-dash-panel { border-color: rgba(255,255,255,0.1); background: rgba(30,41,59,0.3); }
+[data-theme='dark'] .invicti-priority-item { background: rgba(30,41,59,0.4); }
+[data-theme='dark'] .invicti-priority-item--critical { background: rgba(220,38,38,0.1); }
+[data-theme='dark'] .invicti-priority-item--high { background: rgba(234,88,12,0.1); }
+[data-theme='dark'] .invicti-risk-item { border-color: rgba(255,255,255,0.1); background: rgba(30,41,59,0.4); }
+[data-theme='dark'] .invicti-search-input { background: rgba(30,41,59,0.5); border-color: rgba(255,255,255,0.15); }
+
+/* ── Scan Section ───────────────────────────────────────────────────── */
+
+.invicti-scan-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1.5px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  background: var(--glass-bg);
+}
+.invicti-scan-section h3 { margin-bottom: 0.5rem; }
+.invicti-scan-types {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.invicti-scan-type-card {
+  padding: 1rem;
+  border: 1.5px solid var(--ifm-color-emphasis-200);
+  border-radius: 10px;
+  background: var(--ifm-background-color, #fff);
+}
+.invicti-scan-type-card h4 { margin: 0 0 0.5rem; }
+.invicti-scan-type-card p {
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 0.75rem;
+}
+.invicti-scan-note {
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-500);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+.invicti-scan-type-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  margin: 0.1rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: var(--ifm-color-primary-lightest, #e8e0ff);
+  color: var(--ifm-color-primary-dark, #4a33a1);
+}
+
+/* ── Modal ──────────────────────────────────────────────────────────── */
+
+.invicti-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.invicti-modal {
+  background: var(--ifm-background-color, #fff);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 700px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+.invicti-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--ifm-color-emphasis-600);
+}
+.invicti-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* ── Toast ──────────────────────────────────────────────────────────── */
+
+.invicti-toast {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  z-index: 2000;
+  animation: invicti-toast-in 0.3s ease;
+}
+.invicti-toast--success {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+.invicti-toast--error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+@keyframes invicti-toast-in {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ── Dark theme overrides ───────────────────────────────────────────── */
+
+[data-theme='dark'] .invicti-table-wrap { border-color: rgba(255, 255, 255, 0.1); }
+[data-theme='dark'] .invicti-table th { background: rgba(30, 41, 59, 0.6); color: rgba(255, 255, 255, 0.7); }
+[data-theme='dark'] .invicti-table td { border-color: rgba(255, 255, 255, 0.06); }
+[data-theme='dark'] .invicti-card { border-color: rgba(255, 255, 255, 0.1); }
+[data-theme='dark'] .invicti-tab--active { background: var(--ifm-background-color); border-bottom-color: var(--ifm-background-color); }
+[data-theme='dark'] .invicti-modal { background: var(--ifm-background-color); }
+[data-theme='dark'] .invicti-filters select { background: var(--ifm-background-color); border-color: rgba(255, 255, 255, 0.15); color: inherit; }
+[data-theme='dark'] .invicti-scan-section { border-color: rgba(255, 255, 255, 0.1); }
+[data-theme='dark'] .invicti-scan-type-card { border-color: rgba(255, 255, 255, 0.1); background: rgba(30, 41, 59, 0.4); }
+[data-theme='dark'] .invicti-not-configured { border-color: rgba(255, 255, 255, 0.15); }
+[data-theme='dark'] .invicti-toast--success { background: rgba(22, 101, 52, 0.9); color: #dcfce7; }
+[data-theme='dark'] .invicti-toast--error { background: rgba(153, 27, 27, 0.9); color: #fee2e2; }

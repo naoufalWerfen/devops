@@ -83,6 +83,11 @@ const config = {
             position: 'left',
             label: '🔧 Jenkins',
           },
+          {
+            to: '/invicti',
+            position: 'left',
+            label: '🛡️ Invicti',
+          },
           // --- Ocultos temporalmente (posible eliminación futura) ---
           // {
           //   type: 'docSidebar',

@@ -6,6 +6,7 @@ const { runRemoteAudit } = require('./remote-audit');
 const { syncVulnerabilities, checkVulnerabilities } = require('./vulnerability');
 const { processChat } = require('./chat');
 const jenkins = require('./jenkins');
+const invicti = require('./invicti');
 
 const router = express.Router();
 
@@ -390,6 +391,22 @@ router.get('/jenkins/jobs/:id/builds', async (req, res) => {
   }
 });
 
+// GET /api/jenkins/jobs/:id/builds/:number/log — Log de consola de un build
+router.get('/jenkins/jobs/:id/builds/:number/log', async (req, res) => {
+  try {
+    const { rows: [job] } = await pool.query(
+      'SELECT job_path FROM jenkins_jobs WHERE id = $1', [req.params.id]
+    );
+    if (!job) return res.status(404).json({ error: 'Job no encontrado' });
+    const buildNumber = parseInt(req.params.number, 10);
+    if (isNaN(buildNumber)) return res.status(400).json({ error: 'Número de build inválido' });
+    const log = await jenkins.getBuildLog(job.job_path, buildNumber);
+    res.json(log);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // GET /api/jenkins/project/:name/status — Estado de todos los jobs de un proyecto
 router.get('/jenkins/project/:name/status', async (req, res) => {
   try {
@@ -416,6 +433,136 @@ router.get('/jenkins/tokens', async (_req, res) => {
   try {
     const rows = await jenkins.getTokens();
     res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ===========================================================================
+// Invicti AppSec Inventory (cached in DB)
+// ===========================================================================
+
+// GET /api/invicti/status — Check config + cache state
+router.get('/invicti/status', async (_req, res) => {
+  try {
+    const lastSync = await invicti.getLastSync();
+    const hasCached = await invicti.hasCachedData();
+    res.json({
+      configured: invicti.isConfigured(),
+      hasCachedData: hasCached,
+      lastSync: lastSync ? { at: lastSync.finished_at, assets: lastSync.assets_count, vulns: lastSync.vulns_count, status: lastSync.status } : null,
+    });
+  } catch (err) {
+    res.json({ configured: invicti.isConfigured(), hasCachedData: false, lastSync: null });
+  }
+});
+
+// POST /api/invicti/sync — Fetch from Invicti API and cache in DB
+router.post('/invicti/sync', async (_req, res) => {
+  try {
+    const result = await invicti.syncToDatabase();
+    res.json({ ok: true, ...result });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/invicti/summary — From cache
+router.get('/invicti/summary', async (_req, res) => {
+  try {
+    const data = await invicti.getCachedSummary();
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/invicti/assets — From cache
+router.get('/invicti/assets', async (req, res) => {
+  try {
+    const rows = await invicti.getCachedAssets({
+      assetType: req.query.assetType,
+    });
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/invicti/dashboard — Actionable dashboard data
+router.get('/invicti/dashboard', async (req, res) => {
+  try {
+    const data = await invicti.getCachedDashboard();
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/invicti/assets/:id/stats — Live from API
+router.get('/invicti/assets/:id/stats', async (req, res) => {
+  try {
+    const data = await invicti.getAssetStats(req.params.id);
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/invicti/vulnerabilities — From cache
+router.get('/invicti/vulnerabilities', async (req, res) => {
+  try {
+    const rows = await invicti.getCachedVulnerabilities({
+      severity: req.query.severity,
+      status: req.query.status,
+      assetId: req.query.assetId,
+    });
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/invicti/vulnerabilities/:id — From cache (raw JSON)
+router.get('/invicti/vulnerabilities/:id', async (req, res) => {
+  try {
+    const row = await invicti.getCachedVulnerabilityDetail(req.params.id);
+    if (!row) return res.status(404).json({ error: 'Not found' });
+    // Return the raw JSONB for full detail
+    res.json(row.raw || row);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/invicti/technologies — Live from API
+router.get('/invicti/technologies', async (req, res) => {
+  try {
+    const data = await invicti.getTechnologies(
+      parseInt(req.query.pageSize) || 100,
+      parseInt(req.query.pageNumber) || 1
+    );
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/invicti/environments — Live from API
+router.get('/invicti/environments', async (_req, res) => {
+  try {
+    const data = await invicti.getEnvironments();
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/invicti/workspaces — Live from API
+router.get('/invicti/workspaces', async (_req, res) => {
+  try {
+    const data = await invicti.getWorkspaces();
+    res.json(data);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

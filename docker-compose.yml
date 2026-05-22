@@ -47,6 +47,8 @@ services:
       JENKINS_BASE_URL: ${JENKINS_BASE_URL:-https://jenkins.werfen.com}
       JENKINS_API_TOKEN_SERVICENOW: ${Jenkins_API_TOKEN_SERVICENOW:-}
       JENKINS_API_TOKEN_IT_QA: ${Jenkins_API_TOKEN_IT_QA:-}
+      INVICTI_API_BASE_URL: ${INVICTI_API_BASE_URL:-}
+      INVICTI_API_TOKEN: ${INVICTI_API_TOKEN:-}
     secrets:
       - db_password
     ports:
