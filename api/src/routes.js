@@ -535,6 +535,16 @@ router.get('/invicti/vulnerabilities/:id', async (req, res) => {
   }
 });
 
+// GET /api/invicti/cwe/:id — CWE enrichment data (cached from MITRE API)
+router.get('/invicti/cwe/:id', async (req, res) => {
+  try {
+    const data = await invicti.getCweData(req.params.id);
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // GET /api/invicti/technologies — Live from API
 router.get('/invicti/technologies', async (req, res) => {
   try {

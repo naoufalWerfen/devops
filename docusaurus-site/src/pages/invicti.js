@@ -309,21 +309,46 @@ function DashboardView({ dashboard, onNavigateVuln, onNavigateAsset, showToast }
 
 function VulnDetailModal({ vulnId, onClose }) {
   const [detail, setDetail] = useState(null);
+  const [cweData, setCweData] = useState({});
+  const [cweLoading, setCweLoading] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('info');
 
   useEffect(() => {
     if (!vulnId) return;
     fetch(`${API}/invicti/vulnerabilities/${vulnId}`)
       .then(r => r.json())
-      .then(d => { setDetail(d); setLoading(false); })
+      .then(d => {
+        setDetail(d);
+        setLoading(false);
+        // Auto-fetch CWE enrichment
+        const cwes = d.classification?.cwe || [];
+        if (cwes.length > 0) {
+          setCweLoading(true);
+          Promise.all(
+            cwes.map(id =>
+              fetch(`${API}/invicti/cwe/${encodeURIComponent(id)}`)
+                .then(r => r.json())
+                .catch(() => null)
+            )
+          ).then(results => {
+            const map = {};
+            results.forEach((r, i) => { if (r && r.id) map[r.id] = r; });
+            setCweData(map);
+            setCweLoading(false);
+          });
+        }
+      })
       .catch(() => setLoading(false));
   }, [vulnId]);
 
   if (!vulnId) return null;
 
+  const cweEntries = Object.values(cweData);
+
   return (
     <div className="invicti-modal-overlay" onClick={onClose}>
-      <div className="invicti-modal" onClick={e => e.stopPropagation()}>
+      <div className="invicti-modal invicti-modal--wide" onClick={e => e.stopPropagation()}>
         <button className="invicti-modal__close" onClick={onClose}>✕</button>
         {loading ? (
           <p>Cargando detalle…</p>
@@ -332,62 +357,225 @@ function VulnDetailModal({ vulnId, onClose }) {
         ) : (
           <>
             <h2>{detail.name || 'Vulnerabilidad'}</h2>
-            <div className="invicti-detail-grid">
-              <div><strong>Severidad:</strong> {sevBadge(detail.severity)}</div>
-              <div><strong>Estado:</strong> {detail.status || '—'}</div>
-              <div><strong>Confirmado:</strong> {detail.confirmed ? 'Sí' : 'No'}</div>
-              <div><strong>Confianza:</strong> {detail.confidence != null ? `${detail.confidence}%` : '—'}</div>
-              <div><strong>Primera vez:</strong> {formatDate(detail.firstSeen)}</div>
-              <div><strong>Última vez:</strong> {formatDate(detail.lastSeen)}</div>
-              {detail.score?.cvss3 && (
-                <div><strong>CVSS v3:</strong> {detail.score.cvss3.score} — <code style={{ fontSize: '0.8rem' }}>{detail.score.cvss3.vector}</code></div>
-              )}
-              {detail.score?.cvss2?.score > 0 && (
-                <div><strong>CVSS v2:</strong> {detail.score.cvss2.score}</div>
-              )}
-              {detail.classification?.cwe?.length > 0 && (
-                <div><strong>CWE:</strong> {detail.classification.cwe.join(', ')}</div>
-              )}
-              {detail.classification?.cve?.length > 0 && (
-                <div><strong>CVE:</strong> {detail.classification.cve.join(', ')}</div>
-              )}
-              {detail.isRetestable != null && (
-                <div><strong>Re-testable:</strong> {detail.isRetestable ? 'Sí' : 'No'}</div>
-              )}
-              {detail.falsePositive && (
-                <div><strong>Falso positivo:</strong> Sí</div>
-              )}
+
+            {/* Mini tabs inside modal */}
+            <div className="invicti-modal-tabs">
+              {[
+                { key: 'info', label: '📋 Info' },
+                { key: 'cwe', label: `🧠 CWE${cweLoading ? ' ⏳' : cweEntries.length ? ` (${cweEntries.length})` : ''}` },
+                { key: 'mitigations', label: '🛡️ Qué hacer' },
+              ].map(t => (
+                <button
+                  key={t.key}
+                  className={`invicti-modal-tab ${activeTab === t.key ? 'invicti-modal-tab--active' : ''}`}
+                  onClick={() => setActiveTab(t.key)}
+                >
+                  {t.label}
+                </button>
+              ))}
             </div>
 
-            {/* DAST details */}
-            {detail.dast && (
-              <div style={{ marginTop: '1rem' }}>
-                <strong>Detección DAST:</strong>
-                <div className="invicti-detail-grid" style={{ marginTop: '0.5rem' }}>
-                  {detail.dast.url && <div><strong>URL:</strong> <code style={{ fontSize: '0.8rem', wordBreak: 'break-all' }}>{detail.dast.url}</code></div>}
-                  {detail.dast.parameter && <div><strong>Parámetro:</strong> <code>{detail.dast.parameter}</code></div>}
-                  {detail.dast.method && <div><strong>Método:</strong> {detail.dast.method}</div>}
-                  {detail.dast.attack && <div><strong>Ataque:</strong> <code style={{ fontSize: '0.8rem', wordBreak: 'break-all' }}>{detail.dast.attack}</code></div>}
+            {/* TAB: Info */}
+            {activeTab === 'info' && (
+              <>
+                <div className="invicti-detail-grid">
+                  <div><strong>Severidad:</strong> {sevBadge(detail.severity)}</div>
+                  <div><strong>Estado:</strong> {detail.status || '—'}</div>
+                  <div><strong>Confirmado:</strong> {detail.confirmed ? 'Sí' : 'No'}</div>
+                  <div><strong>Confianza:</strong> {detail.confidence != null ? `${detail.confidence}%` : '—'}</div>
+                  <div><strong>Primera vez:</strong> {formatDate(detail.firstSeen)}</div>
+                  <div><strong>Última vez:</strong> {formatDate(detail.lastSeen)}</div>
+                  {detail.score?.cvss3 && (
+                    <div><strong>CVSS v3:</strong> {detail.score.cvss3.score} — <code style={{ fontSize: '0.8rem' }}>{detail.score.cvss3.vector}</code></div>
+                  )}
+                  {detail.score?.cvss2?.score > 0 && (
+                    <div><strong>CVSS v2:</strong> {detail.score.cvss2.score}</div>
+                  )}
+                  {detail.classification?.cwe?.length > 0 && (
+                    <div><strong>CWE:</strong> {detail.classification.cwe.map(c => (
+                      <a key={c} href={`https://cwe.mitre.org/data/definitions/${c.replace('CWE-','')}.html`}
+                         target="_blank" rel="noopener noreferrer"
+                         style={{ marginRight: 6 }}>{c}</a>
+                    ))}</div>
+                  )}
+                  {detail.classification?.cve?.length > 0 && (
+                    <div><strong>CVE:</strong> {detail.classification.cve.join(', ')}</div>
+                  )}
+                  {detail.isRetestable != null && (
+                    <div><strong>Re-testable:</strong> {detail.isRetestable ? 'Sí' : 'No'}</div>
+                  )}
                 </div>
+
+                {detail.dast && (
+                  <div style={{ marginTop: '1rem' }}>
+                    <strong>Detección DAST:</strong>
+                    <div className="invicti-detail-grid" style={{ marginTop: '0.5rem' }}>
+                      {detail.dast.url && <div><strong>URL:</strong> <code style={{ fontSize: '0.8rem', wordBreak: 'break-all' }}>{detail.dast.url}</code></div>}
+                      {detail.dast.parameter && <div><strong>Parámetro:</strong> <code>{detail.dast.parameter}</code></div>}
+                      {detail.dast.method && <div><strong>Método:</strong> {detail.dast.method}</div>}
+                      {detail.dast.attack && <div><strong>Ataque:</strong> <code style={{ fontSize: '0.8rem', wordBreak: 'break-all' }}>{detail.dast.attack}</code></div>}
+                    </div>
+                  </div>
+                )}
+
+                {detail.source && (
+                  <div style={{ marginTop: '1rem' }}>
+                    <strong>Fuente:</strong>
+                    <div className="invicti-detail-grid" style={{ marginTop: '0.5rem' }}>
+                      {detail.source.system && <div><strong>Sistema:</strong> {detail.source.system}</div>}
+                      {detail.source.module && <div><strong>Módulo:</strong> <code style={{ fontSize: '0.8rem' }}>{detail.source.module}</code></div>}
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+
+            {/* TAB: CWE Details */}
+            {activeTab === 'cwe' && (
+              <div className="invicti-cwe-detail">
+                {cweLoading ? (
+                  <p>⏳ Consultando MITRE CWE API…</p>
+                ) : cweEntries.length === 0 ? (
+                  <p className="invicti-empty-msg">Sin datos CWE asociados a esta vulnerabilidad</p>
+                ) : cweEntries.map(cwe => (
+                  <div key={cwe.id} className="invicti-cwe-detail-block">
+                    <h3>
+                      <a href={cwe.url} target="_blank" rel="noopener noreferrer">{cwe.id}</a>
+                      {' — '}{cwe.name}
+                    </h3>
+                    {cwe.likelihood && (
+                      <div style={{ marginBottom: '0.5rem' }}>
+                        <strong>Probabilidad de explotación:</strong>{' '}
+                        <span className={`invicti-likelihood invicti-likelihood--${(cwe.likelihood || '').toLowerCase()}`}>
+                          {cwe.likelihood}
+                        </span>
+                      </div>
+                    )}
+                    <p style={{ lineHeight: 1.6 }}>{cwe.description}</p>
+                    {cwe.extendedDescription && (
+                      <p style={{ lineHeight: 1.6, color: 'var(--ifm-color-emphasis-700)' }}>{cwe.extendedDescription.replace(/<[^>]+>/g, '')}</p>
+                    )}
+
+                    {/* Consequences */}
+                    {cwe.consequences?.length > 0 && (
+                      <div style={{ marginTop: '1rem' }}>
+                        <strong>⚠️ Consecuencias:</strong>
+                        <div className="invicti-cwe-consequences">
+                          {cwe.consequences.map((c, i) => (
+                            <div key={i} className="invicti-cwe-consequence">
+                              <div className="invicti-cwe-consequence__scope">
+                                {(c.Scope || []).join(', ')}
+                              </div>
+                              <div className="invicti-cwe-consequence__impact">
+                                {(c.Impact || []).join(', ')}
+                              </div>
+                              {c.Note && <div className="invicti-cwe-consequence__note">{c.Note}</div>}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Detection */}
+                    {cwe.detection?.length > 0 && (
+                      <div style={{ marginTop: '1rem' }}>
+                        <strong>🔍 Métodos de detección:</strong>
+                        {cwe.detection.map((d, i) => (
+                          <div key={i} className="invicti-cwe-detection">
+                            <strong>{d.Method}</strong>
+                            {d.Description && <p>{d.Description.replace(/<[^>]+>/g, '').slice(0, 500)}</p>}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Real-world examples */}
+                    {cwe.examples?.length > 0 && (
+                      <div style={{ marginTop: '1rem' }}>
+                        <strong>📝 Ejemplos reales (CVE):</strong>
+                        <div className="invicti-cwe-examples">
+                          {cwe.examples.map((ex, i) => (
+                            <div key={i} className="invicti-cwe-example">
+                              <a href={`https://nvd.nist.gov/vuln/detail/${ex.Reference}`}
+                                 target="_blank" rel="noopener noreferrer"
+                                 className="invicti-cwe-example__ref">
+                                {ex.Reference}
+                              </a>
+                              <span>{ex.Description?.replace(/<[^>]+>/g, '').slice(0, 200)}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* CAPEC attack patterns */}
+                    {cwe.attackPatterns?.length > 0 && (
+                      <div style={{ marginTop: '1rem' }}>
+                        <strong>🎯 Patrones de ataque (CAPEC):</strong>
+                        <div style={{ marginTop: '0.25rem' }}>
+                          {cwe.attackPatterns.map(id => (
+                            <a key={id} href={`https://capec.mitre.org/data/definitions/${id}.html`}
+                               target="_blank" rel="noopener noreferrer"
+                               className="invicti-capec-link">
+                              CAPEC-{id}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             )}
 
-            {/* Source info */}
-            {detail.source && (
-              <div style={{ marginTop: '1rem' }}>
-                <strong>Fuente:</strong>
-                <div className="invicti-detail-grid" style={{ marginTop: '0.5rem' }}>
-                  {detail.source.system && <div><strong>Sistema:</strong> {detail.source.system}</div>}
-                  {detail.source.module && <div><strong>Módulo:</strong> <code style={{ fontSize: '0.8rem' }}>{detail.source.module}</code></div>}
-                  {detail.source.detectionTechnology && <div><strong>Tecnología:</strong> {detail.source.detectionTechnology}</div>}
-                </div>
-              </div>
-            )}
-
-            {detail.comment && (
-              <div style={{ marginTop: '1rem' }}>
-                <strong>Comentario:</strong>
-                <p style={{ marginTop: '0.25rem', whiteSpace: 'pre-wrap' }}>{detail.comment}</p>
+            {/* TAB: What to do */}
+            {activeTab === 'mitigations' && (
+              <div className="invicti-mitigations">
+                {cweLoading ? (
+                  <p>⏳ Consultando MITRE CWE API…</p>
+                ) : cweEntries.length === 0 || cweEntries.every(c => !c.mitigations?.length) ? (
+                  <div className="invicti-empty-msg">
+                    <p>No hay mitigaciones disponibles desde MITRE para los CWE de esta vulnerabilidad.</p>
+                    {detail.classification?.cwe?.length > 0 && (
+                      <p>Consulta directamente: {detail.classification.cwe.map(c => (
+                        <a key={c} href={`https://cwe.mitre.org/data/definitions/${c.replace('CWE-','')}.html`}
+                           target="_blank" rel="noopener noreferrer"
+                           style={{ marginRight: 8 }}>{c}</a>
+                      ))}</p>
+                    )}
+                  </div>
+                ) : cweEntries.map(cwe => (
+                  cwe.mitigations?.length > 0 && (
+                    <div key={cwe.id} className="invicti-mitigation-block">
+                      <h3>🛡️ Mitigaciones para {cwe.id} — {cwe.name}</h3>
+                      {cwe.mitigations.map((m, i) => (
+                        <div key={i} className="invicti-mitigation-item">
+                          <div className="invicti-mitigation-item__header">
+                            {m.Phase && (
+                              <span className="invicti-mitigation-phase">
+                                {Array.isArray(m.Phase) ? m.Phase.join(', ') : m.Phase}
+                              </span>
+                            )}
+                            {m.Strategy && (
+                              <span className="invicti-mitigation-strategy">{m.Strategy}</span>
+                            )}
+                          </div>
+                          {m.Description && (
+                            <p className="invicti-mitigation-desc">
+                              {m.Description.replace(/<[^>]+>/g, '')}
+                            </p>
+                          )}
+                          {m.Effectiveness && (
+                            <div className="invicti-mitigation-effectiveness">
+                              Efectividad: <strong>{m.Effectiveness}</strong>
+                              {m.EffectivenessNotes && <span> — {m.EffectivenessNotes.replace(/<[^>]+>/g, '')}</span>}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )
+                ))}
               </div>
             )}
           </>

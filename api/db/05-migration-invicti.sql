@@ -48,3 +48,19 @@ CREATE TABLE IF NOT EXISTS invicti_sync_log (
 CREATE INDEX IF NOT EXISTS idx_invicti_vulns_severity ON invicti_vulnerabilities(severity);
 CREATE INDEX IF NOT EXISTS idx_invicti_vulns_status ON invicti_vulnerabilities(status);
 CREATE INDEX IF NOT EXISTS idx_invicti_vulns_asset ON invicti_vulnerabilities(asset_id);
+
+-- CWE enrichment cache (from cwe-api.mitre.org)
+CREATE TABLE IF NOT EXISTS cwe_cache (
+  cwe_id        TEXT PRIMARY KEY,       -- e.g. 'CWE-918'
+  name          TEXT,
+  description   TEXT,
+  extended_desc TEXT,
+  likelihood    TEXT,
+  mitigations   JSONB,                  -- PotentialMitigations array
+  consequences  JSONB,                  -- CommonConsequences array
+  detection     JSONB,                  -- DetectionMethods array
+  examples      JSONB,                  -- ObservedExamples array
+  attack_patterns TEXT[],               -- CAPEC IDs
+  raw           JSONB,
+  fetched_at    TIMESTAMPTZ DEFAULT NOW()
+);

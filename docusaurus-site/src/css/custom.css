@@ -2476,6 +2476,7 @@ html {
   position: relative;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
 }
+.invicti-modal--wide { max-width: 900px; }
 .invicti-modal__close {
   position: absolute;
   top: 1rem;
@@ -2492,6 +2493,161 @@ html {
   gap: 0.75rem;
   margin-top: 1rem;
 }
+
+/* ── Modal Tabs ─────────────────────────────────────────────────────── */
+.invicti-modal-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--ifm-color-emphasis-200);
+  margin: 1rem 0;
+}
+.invicti-modal-tab {
+  padding: 0.5rem 1.25rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ifm-color-emphasis-600);
+  transition: all 0.2s;
+}
+.invicti-modal-tab:hover { color: var(--ifm-color-primary); }
+.invicti-modal-tab--active {
+  color: var(--ifm-color-primary);
+  border-bottom-color: var(--ifm-color-primary);
+}
+
+/* ── CWE Detail Block ──────────────────────────────────────────────── */
+.invicti-cwe-detail-block {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  background: var(--ifm-color-emphasis-50, rgba(0,0,0,0.02));
+}
+.invicti-cwe-detail-block h3 { margin: 0 0 0.75rem; font-size: 1.1rem; }
+.invicti-cwe-detail-block h3 a { color: var(--ifm-color-primary); text-decoration: none; }
+.invicti-cwe-detail-block h3 a:hover { text-decoration: underline; }
+
+.invicti-likelihood {
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.invicti-likelihood--high { background: #fee2e2; color: #991b1b; }
+.invicti-likelihood--medium { background: #fef3c7; color: #92400e; }
+.invicti-likelihood--low { background: #d1fae5; color: #065f46; }
+
+/* CWE Consequences */
+.invicti-cwe-consequences {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.invicti-cwe-consequence {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(234, 88, 12, 0.06);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  align-items: start;
+}
+.invicti-cwe-consequence__scope { font-weight: 600; color: var(--werfen-secondary); white-space: nowrap; }
+.invicti-cwe-consequence__impact { color: var(--ifm-color-emphasis-700); }
+.invicti-cwe-consequence__note { grid-column: 1 / -1; color: var(--ifm-color-emphasis-600); font-size: 0.8rem; }
+
+/* CWE Detection methods */
+.invicti-cwe-detection {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(6, 3, 141, 0.04);
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+.invicti-cwe-detection strong { color: var(--ifm-color-primary); }
+.invicti-cwe-detection p { margin: 0.25rem 0 0; line-height: 1.5; }
+
+/* CWE Examples */
+.invicti-cwe-examples { display: grid; gap: 0.5rem; margin-top: 0.5rem; }
+.invicti-cwe-example {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  font-size: 0.85rem;
+}
+.invicti-cwe-example__ref {
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--ifm-color-primary);
+}
+
+/* CAPEC links */
+.invicti-capec-link {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  margin: 0.25rem 0.25rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  background: rgba(6, 3, 141, 0.08);
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+.invicti-capec-link:hover { background: rgba(6, 3, 141, 0.15); text-decoration: none; }
+
+/* ── Mitigations Tab ────────────────────────────────────────────────── */
+.invicti-mitigation-block { margin-bottom: 1.5rem; }
+.invicti-mitigation-block h3 { font-size: 1rem; margin-bottom: 0.75rem; }
+.invicti-mitigation-item {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  background: rgba(34, 197, 94, 0.03);
+}
+.invicti-mitigation-item__header { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+.invicti-mitigation-phase {
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--ifm-color-primary);
+  color: #fff;
+}
+.invicti-mitigation-strategy {
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--werfen-secondary);
+  color: #fff;
+}
+.invicti-mitigation-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-800);
+}
+.invicti-mitigation-effectiveness {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+/* Dark mode CWE additions */
+[data-theme='dark'] .invicti-cwe-detail-block { border-color: rgba(255,255,255,0.1); background: rgba(30,41,59,0.4); }
+[data-theme='dark'] .invicti-cwe-consequence { background: rgba(234,88,12,0.1); }
+[data-theme='dark'] .invicti-cwe-detection { background: rgba(6,3,141,0.12); }
+[data-theme='dark'] .invicti-mitigation-item { border-color: rgba(255,255,255,0.1); background: rgba(22,197,94,0.06); }
+[data-theme='dark'] .invicti-capec-link { background: rgba(6,3,141,0.2); }
+[data-theme='dark'] .invicti-likelihood--high { background: rgba(220,38,38,0.2); color: #fca5a5; }
+[data-theme='dark'] .invicti-likelihood--medium { background: rgba(234,179,8,0.2); color: #fde68a; }
+[data-theme='dark'] .invicti-likelihood--low { background: rgba(34,197,94,0.2); color: #86efac; }
 
 /* ── Toast ──────────────────────────────────────────────────────────── */
 

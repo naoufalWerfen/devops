@@ -447,6 +447,105 @@ async function hasCachedData() {
   return parseInt(rows[0].count) > 0;
 }
 
+// ══════════════════════════════════════════════════════════════════════════
+// CWE Enrichment — fetch from cwe-api.mitre.org with DB cache
+// ══════════════════════════════════════════════════════════════════════════
+
+const CWE_API = 'https://cwe-api.mitre.org/api/v1';
+const CWE_CACHE_DAYS = 30; // re-fetch after 30 days
+
+/**
+ * Get CWE data, from DB cache or fetch from MITRE API
+ * @param {string} cweId - e.g. "CWE-918" or "918"
+ */
+async function getCweData(cweId) {
+  // Normalize: accept "CWE-918" or "918"
+  const numericId = String(cweId).replace(/^CWE-/i, '');
+  const normalizedId = `CWE-${numericId}`;
+
+  // 1. Check DB cache
+  const { rows } = await pool.query(
+    `SELECT * FROM cwe_cache WHERE cwe_id = $1 AND fetched_at > NOW() - INTERVAL '${CWE_CACHE_DAYS} days'`,
+    [normalizedId]
+  );
+  if (rows.length > 0) {
+    return formatCweResponse(rows[0]);
+  }
+
+  // 2. Fetch from MITRE API
+  try {
+    const res = await fetch(`${CWE_API}/cwe/weakness/${numericId}`, {
+      headers: { 'Accept': 'application/json' },
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!res.ok) throw new Error(`CWE API ${res.status}`);
+    const data = await res.json();
+    const w = (data.Weaknesses || [])[0];
+    if (!w) throw new Error('No weakness data returned');
+
+    // 3. Store in cache
+    await pool.query(
+      `INSERT INTO cwe_cache (cwe_id, name, description, extended_desc, likelihood,
+         mitigations, consequences, detection, examples, attack_patterns, raw, fetched_at)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, NOW())
+       ON CONFLICT (cwe_id) DO UPDATE SET
+         name = EXCLUDED.name, description = EXCLUDED.description,
+         extended_desc = EXCLUDED.extended_desc, likelihood = EXCLUDED.likelihood,
+         mitigations = EXCLUDED.mitigations, consequences = EXCLUDED.consequences,
+         detection = EXCLUDED.detection, examples = EXCLUDED.examples,
+         attack_patterns = EXCLUDED.attack_patterns, raw = EXCLUDED.raw,
+         fetched_at = NOW()`,
+      [
+        normalizedId,
+        w.Name || null,
+        w.Description || null,
+        w.ExtendedDescription || null,
+        w.LikelihoodOfExploit || null,
+        JSON.stringify(w.PotentialMitigations || []),
+        JSON.stringify(w.CommonConsequences || []),
+        JSON.stringify(w.DetectionMethods || []),
+        JSON.stringify((w.ObservedExamples || []).slice(0, 5)),
+        (w.RelatedAttackPatterns || []).map(p => String(p)),
+        JSON.stringify(w),
+      ]
+    );
+
+    return formatCweResponse({
+      cwe_id: normalizedId,
+      name: w.Name,
+      description: w.Description,
+      extended_desc: w.ExtendedDescription,
+      likelihood: w.LikelihoodOfExploit,
+      mitigations: w.PotentialMitigations || [],
+      consequences: w.CommonConsequences || [],
+      detection: w.DetectionMethods || [],
+      examples: (w.ObservedExamples || []).slice(0, 5),
+      attack_patterns: (w.RelatedAttackPatterns || []).map(p => String(p)),
+    });
+  } catch (err) {
+    // Try stale cache if API fails
+    const stale = await pool.query('SELECT * FROM cwe_cache WHERE cwe_id = $1', [normalizedId]);
+    if (stale.rows.length > 0) return formatCweResponse(stale.rows[0]);
+    throw err;
+  }
+}
+
+function formatCweResponse(row) {
+  return {
+    id: row.cwe_id,
+    name: row.name,
+    description: row.description,
+    extendedDescription: row.extended_desc,
+    likelihood: row.likelihood,
+    mitigations: typeof row.mitigations === 'string' ? JSON.parse(row.mitigations) : (row.mitigations || []),
+    consequences: typeof row.consequences === 'string' ? JSON.parse(row.consequences) : (row.consequences || []),
+    detection: typeof row.detection === 'string' ? JSON.parse(row.detection) : (row.detection || []),
+    examples: typeof row.examples === 'string' ? JSON.parse(row.examples) : (row.examples || []),
+    attackPatterns: row.attack_patterns || [],
+    url: `https://cwe.mitre.org/data/definitions/${row.cwe_id.replace('CWE-','')}.html`,
+  };
+}
+
 module.exports = {
   invictiGet,
   getApplications,
@@ -471,4 +570,5 @@ module.exports = {
   getCachedVulnerabilityDetail,
   getLastSync,
   hasCachedData,
+  getCweData,
 };
