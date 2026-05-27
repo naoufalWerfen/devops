@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import Layout from '@theme/Layout';
+import { motion, AnimatePresence } from 'motion/react';
 
 const API = 'http://localhost:3001/api';
 
@@ -64,16 +65,21 @@ function DeployTypeBadge({ type }) {
 
 function ProjectCard({ project, onSelect, isSelected }) {
   return (
-    <div
+    <motion.div
       className={`jenkins-project-card ${isSelected ? 'jenkins-project-card--selected' : ''}`}
       onClick={() => onSelect(project.name)}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => e.key === 'Enter' && onSelect(project.name)}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.03, y: -3 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 22 }}
     >
       <div className="jenkins-project-card__name">{project.name}</div>
       <div className="jenkins-project-card__count">{project.job_count} jobs</div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -331,7 +337,13 @@ export default function JenkinsPage() {
 
         {/* Jobs agrupados */}
         {Object.entries(projectGroups).map(([pName, pJobs]) => (
-          <div key={pName} className="jenkins-group">
+          <motion.div
+            key={pName}
+            className="jenkins-group"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+          >
             <h2 className="jenkins-group__title">{pName} <span className="jenkins-group__count">({pJobs.length})</span></h2>
             <div className="jenkins-table-wrap">
               <table className="jenkins-table">
@@ -358,7 +370,7 @@ export default function JenkinsPage() {
                 </tbody>
               </table>
             </div>
-          </div>
+          </motion.div>
         ))}
 
         {/* Tokens */}

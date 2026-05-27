@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './ChatBot.css';
+import { motion, AnimatePresence } from 'motion/react';
 
 const API_BASE = 'http://localhost:3001/api';
 
@@ -173,18 +174,29 @@ export default function ChatBot() {
   return (
     <>
       {/* Floating button */}
-      <button
+      <motion.button
         className={`chatbot-fab ${isOpen ? 'chatbot-fab--open' : ''}`}
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? 'Cerrar chat' : 'Abrir asistente DevOps'}
         title="Asistente DevOps"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.92 }}
+        animate={{ rotate: isOpen ? 90 : 0 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
         {isOpen ? '✕' : '🤖'}
-      </button>
+      </motion.button>
 
       {/* Chat panel */}
-      {isOpen && (
-        <div className="chatbot-panel">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="chatbot-panel"
+            initial={{ opacity: 0, y: 24, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 24, scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+          >
           <div className="chatbot-header">
             <div className="chatbot-header__info">
               <span className="chatbot-header__icon">🤖</span>
@@ -199,29 +211,42 @@ export default function ChatBot() {
           </div>
 
           <div className="chatbot-messages">
-            {messages.map((msg, i) => (
-              <div key={i} className={`chatbot-msg chatbot-msg--${msg.role} ${msg.isError ? 'chatbot-msg--error' : ''}`}>
-                {msg.role === 'assistant' ? (
-                  <div className="chatbot-msg__avatar">🤖</div>
-                ) : null}
-                <div className="chatbot-msg__bubble">
+            <AnimatePresence initial={false}>
+              {messages.map((msg, i) => (
+                <motion.div
+                  key={i}
+                  className={`chatbot-msg chatbot-msg--${msg.role} ${msg.isError ? 'chatbot-msg--error' : ''}`}
+                  initial={{ opacity: 0, y: 12, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.28, ease: [0.34, 1.1, 0.64, 1] }}
+                >
                   {msg.role === 'assistant' ? (
-                    <MarkdownLite text={msg.content} />
-                  ) : (
-                    <p className="chat-p">{msg.content}</p>
-                  )}
-                </div>
-              </div>
-            ))}
+                    <div className="chatbot-msg__avatar">🤖</div>
+                  ) : null}
+                  <div className="chatbot-msg__bubble">
+                    {msg.role === 'assistant' ? (
+                      <MarkdownLite text={msg.content} />
+                    ) : (
+                      <p className="chat-p">{msg.content}</p>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
             {loading && (
-              <div className="chatbot-msg chatbot-msg--assistant">
+              <motion.div
+                className="chatbot-msg chatbot-msg--assistant"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25 }}
+              >
                 <div className="chatbot-msg__avatar">🤖</div>
                 <div className="chatbot-msg__bubble chatbot-msg__bubble--loading">
                   <span className="chatbot-typing">
                     <span></span><span></span><span></span>
                   </span>
                 </div>
-              </div>
+              </motion.div>
             )}
             <div ref={messagesEndRef} />
           </div>
@@ -246,8 +271,9 @@ export default function ChatBot() {
               ➤
             </button>
           </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

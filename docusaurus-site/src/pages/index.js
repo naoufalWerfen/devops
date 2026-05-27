@@ -1,5 +1,10 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
 import Layout from '@theme/Layout';
+import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { motion, AnimatePresence } from 'motion/react';
+
+gsap.registerPlugin(useGSAP);
 
 const API_BASE = 'http://localhost:3001/api';
 
@@ -105,14 +110,45 @@ function useSortableData(items) {
   return { sortedItems, requestSort, getSortIndicator };
 }
 
+/* ── Stat animado con countUp ──────────────────────────────────────────────── */
+function AnimatedStat({ value, label, color }) {
+  const numRef = useRef(null);
+  const counterRef = useRef({ val: 0 });
+
+  useGSAP(() => {
+    if (numRef.current == null || value == null) return;
+    gsap.to(counterRef.current, {
+      val: value,
+      duration: 1.2,
+      ease: 'power2.out',
+      onUpdate() {
+        if (numRef.current) numRef.current.textContent = Math.round(counterRef.current.val);
+      },
+    });
+  }, { dependencies: [value] });
+
+  return (
+    <div className="stat-item">
+      <div className="stat-number" style={{ color }} ref={numRef}>0</div>
+      <div className="stat-label" style={{ color: 'rgba(255,255,255,0.7)' }}>{label}</div>
+    </div>
+  );
+}
+
 /* ── Componentes ─────────────────────────────────────────────────────────── */
 
 function ServerCards({ servers, onNavigateToProject }) {
   if (!servers.length) return null;
   return (
     <div className="stack-servers">
-      {servers.map((s) => (
-        <div key={s.id} className="stack-server-card">
+      {servers.map((s, i) => (
+        <motion.div
+          key={s.id}
+          className="stack-server-card"
+          initial={{ opacity: 0, y: 28, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.45, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className="stack-server-card__header">
             <h3>{s.name}</h3>
             <span className="server-ip">{s.ip}</span>
@@ -128,7 +164,7 @@ function ServerCards({ servers, onNavigateToProject }) {
           <div className="stack-server-card__footer">
             <a href={`#stack-${s.name}`} className="server-stack-link" onClick={(e) => { e.preventDefault(); onNavigateToProject(s.name); }}>Ver stack →</a>
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
   );
@@ -306,30 +342,12 @@ export default function StackStatus() {
           <h1>Stack Tecnológico & Servidores</h1>
           <p>Estado de versiones, EOL y salud de la infraestructura — datos de <a href="https://endoflife.date" target="_blank" rel="noopener noreferrer" style={{color: '#fff', textDecoration: 'underline'}}>endoflife.date</a></p>
           <div className="stats-bar" style={{justifyContent: 'flex-start', padding: '1rem 0 0'}}>
-            <div className="stat-item">
-              <div className="stat-number" style={{color: '#FF4848'}}>{eolCount}</div>
-              <div className="stat-label" style={{color: 'rgba(255,255,255,0.7)'}}>EOL</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number" style={{color: '#FFBA00'}}>{eoasCount}</div>
-              <div className="stat-label" style={{color: 'rgba(255,255,255,0.7)'}}>Soporte limitado</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number" style={{color: '#22c55e'}}>{okCount}</div>
-              <div className="stat-label" style={{color: 'rgba(255,255,255,0.7)'}}>Soportados</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number" style={{color: '#60a5fa'}}>{ltsCount}</div>
-              <div className="stat-label" style={{color: 'rgba(255,255,255,0.7)'}}>LTS</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number" style={{color: '#fff'}}>{servers.length}</div>
-              <div className="stat-label" style={{color: 'rgba(255,255,255,0.7)'}}>Servidores</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number" style={{color: '#f97316'}}>{vulnCount}</div>
-              <div className="stat-label" style={{color: 'rgba(255,255,255,0.7)'}}>Con vulns</div>
-            </div>
+            <AnimatedStat value={eolCount}      color="#FF4848"  label="EOL" />
+            <AnimatedStat value={eoasCount}     color="#FFBA00"  label="Soporte limitado" />
+            <AnimatedStat value={okCount}       color="#1AA04F"  label="Soportados" />
+            <AnimatedStat value={ltsCount}      color="#60a5fa"  label="LTS" />
+            <AnimatedStat value={servers.length} color="#fff"    label="Servidores" />
+            <AnimatedStat value={vulnCount}     color="#f97316"  label="Con vulns" />
           </div>
         </div>
       </header>
