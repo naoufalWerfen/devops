@@ -111,6 +111,10 @@ logs: ## Ver logs de los contenedores
 api-logs: ## Ver logs solo de la API
 	docker compose logs -f --tail=50 api
 
+.PHONY: chat-logs
+chat-logs: ## Ver logs del chatbot AI en tiempo real
+	docker exec -it devops-api sh -c "mkdir -p /logs && touch /logs/chat.log && tail -f /logs/chat.log"
+
 .PHONY: db-shell
 db-shell: ## Abrir shell psql en la base de datos
 	docker compose exec db psql -U devops devops_dashboard

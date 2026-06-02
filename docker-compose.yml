@@ -18,6 +18,7 @@ services:
       - ./api/db/init.sql:/docker-entrypoint-initdb.d/01-init.sql
       - ./api/db/02-migration-import.sql:/docker-entrypoint-initdb.d/02-migration-import.sql
       - ./api/db/03-migration-vuln.sql:/docker-entrypoint-initdb.d/03-migration-vuln.sql
+      - ./api/db/04-migration-jenkins.sql:/docker-entrypoint-initdb.d/04-migration-jenkins.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U devops -d devops_dashboard"]
       interval: 5s
@@ -41,6 +42,13 @@ services:
       ENDOFLIFE_API_URL: https://endoflife.date/api/v1
       SNYK_TOKEN: ${SNYK_TOKEN:-}
       SNYK_ORG_ID: ${SNYK_ORG_ID:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      JENKINS_BASE_URL: ${JENKINS_BASE_URL:-https://jenkins.werfen.com}
+      JENKINS_API_TOKEN_SERVICENOW: ${Jenkins_API_TOKEN_SERVICENOW:-}
+      JENKINS_API_TOKEN_IT_QA: ${Jenkins_API_TOKEN_IT_QA:-}
+      INVICTI_API_BASE_URL: ${INVICTI_API_BASE_URL:-}
+      INVICTI_API_TOKEN: ${INVICTI_API_TOKEN:-}
     secrets:
       - db_password
     ports:

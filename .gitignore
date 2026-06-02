@@ -57,6 +57,10 @@ docusaurus-site/.docusaurus/
 # API build output
 api/node_modules/
 
+# Database backups
+backup-*.sql
+backup-*.dump
+
 # Recon outputs (contienen datos sensibles del servidor)
 recon-*-output.txt
 recon-*-extra.txt

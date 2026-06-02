@@ -1,0 +1,9 @@
+[submodule "tools/ui-ux-skill"]
+	path = tools/ui-ux-skill
+	url = https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git
+[submodule "tools/gsap-skill"]
+	path = tools/gsap-skill
+	url = https://github.com/greensock/gsap-skills
+[submodule "tools/nano-banana"]
+	path = tools/nano-banana
+	url = https://github.com/The-Focus-AI/nano-banana-cli
