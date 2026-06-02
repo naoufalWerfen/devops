@@ -1650,20 +1650,10 @@ html {
   position: relative;
 }
 
-/* Table row animation on EOL items */
+/* Table row indicator on EOL items — use box-shadow instead of ::before
+   to avoid creating an anonymous table-cell that shifts columns */
 .stack-table tbody tr.row--eol {
-  position: relative;
-}
-
-.stack-table tbody tr.row--eol::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--werfen-red);
-  border-radius: 0 2px 2px 0;
+  box-shadow: inset 3px 0 0 0 var(--werfen-red);
 }
 
 /* Dark mode specific enhancements */
